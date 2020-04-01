@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import data from "./data/email-archives.json";
+import Clip from "./Assets/icon_clip.svg";
 import "./App.scss";
 
 class App extends Component {
@@ -8,18 +9,12 @@ class App extends Component {
 
     this.state = {
       search: "",
-      archives: data.emails,
-      results: []
+      archives: data.emails
     };
   }
-  resultCount = () => {
-    this.setState({
-      results: this.state.archives.length - 1
-    });
-  };
 
   render() {
-    const { archives, search, results } = this.state;
+    const { archives, search } = this.state;
     console.log(archives);
     const filterEmails = archives
       .filter(mail => {
@@ -35,19 +30,26 @@ class App extends Component {
         return (
           <div id='mail-list' key={i}>
             <div className='sender'>
-              <h2>{emails.sender}</h2>
+              <h3>{emails.sender}</h3>
             </div>
-            <div>
+            <div className='recipient'>
               {" "}
-              <h2>{emails.recipient}</h2>
+              <h3>{emails.recipient}</h3>
             </div>
-            <div>
+            <div className='subject'>
               {" "}
-              <h2>{emails.subject}</h2>
+              <h3>{emails.subject}</h3>
             </div>
-            <div className='date'>
+            <div className={emails.attachment === true ? "attach" : "hide"}>
+              <img src={Clip} />
+            </div>
+            <div
+              className={
+                emails.attachment === true ? "date" : "date-with-attachment"
+              }
+            >
               {" "}
-              <h2>{emails.date}</h2>
+              <h3>{emails.date}</h3>
             </div>
           </div>
         );
@@ -63,17 +65,17 @@ class App extends Component {
         </div>
         <div id='email'>
           <div id='mail-order'>
-            <div>
+            <div id='from'>
               <h2>From</h2>
             </div>
-            <div>
+            <div id='to'>
               <h2>To</h2>
             </div>
-            <div>
+            <div id='about'>
               {" "}
               <h2>Subject</h2>
             </div>
-            <div>
+            <div id='when'>
               {" "}
               <h2>Date</h2>
             </div>
