@@ -8,12 +8,18 @@ class App extends Component {
 
     this.state = {
       search: "",
-      archives: data.emails
+      archives: data.emails,
+      results: []
     };
   }
+  resultCount = () => {
+    this.setState({
+      results: this.state.archives.length - 1
+    });
+  };
 
   render() {
-    const { archives, search } = this.state;
+    const { archives, search, results } = this.state;
     console.log(archives);
     const filterEmails = archives
       .filter(mail => {
@@ -28,7 +34,7 @@ class App extends Component {
       .map((emails, i) => {
         return (
           <div id='mail-list' key={i}>
-            <div>
+            <div className='sender'>
               <h2>{emails.sender}</h2>
             </div>
             <div>
@@ -39,7 +45,7 @@ class App extends Component {
               {" "}
               <h2>{emails.subject}</h2>
             </div>
-            <div>
+            <div className='date'>
               {" "}
               <h2>{emails.date}</h2>
             </div>
@@ -53,7 +59,7 @@ class App extends Component {
           <input onChange={e => this.setState({ search: e.target.value })} />
         </div>
         <div id='title-count'>
-          <h3>Results: 0 mail(s)</h3>
+          <h3>Results: {filterEmails.length}mail(s)</h3>
         </div>
         <div id='email'>
           <div id='mail-order'>
