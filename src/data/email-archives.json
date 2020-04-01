@@ -1,0 +1,84 @@
+{
+  "emails": [
+    {
+      "sender": "aaa@example.com",
+      "recipient": "zzz@example.com",
+      "subject": "[HR-888] Notice of official announcment",
+      "body": "dfklsdjfsjjdkjfls",
+      "attachment": false,
+      "date": "0:20"
+    },
+    {
+      "sender": "bbb.bbbb@example.com",
+      "recipient": "yyy@example.com",
+      "subject": "[web:333] Web Contact",
+      "body": "dfklsdjfsjjdkjfls",
+      "attachment": false,
+      "date": "0:10"
+    },
+    {
+      "sender": "ccc@example.com",
+      "recipient": "xxx@example.com",
+      "subject": "Happpy New Year! Greetings for the New Year",
+      "body": "dfklsdjfsjjdkjfls",
+      "attachment": true,
+      "date": "0:00"
+    },
+    {
+      "sender": "ddd.dddd@example.com",
+      "recipient": "vvv.vvv@example.com",
+      "subject": "[HR-887(Revised: Office Expansion Project Team)]Notice of offical announcment",
+      "body": "dfklsdjfsjjdkjfls",
+      "attachment": false,
+      "date": "JAN 01"
+    },
+    {
+      "sender": "eee@example.com",
+      "recipient": "sss@example.com",
+      "subject": "[Github] Logout page",
+      "body": "dfklsdjfsjjdkjfls",
+      "attachment": false,
+      "date": "JAN 01"
+    },
+    {
+      "sender": "fff.ffff@example.com",
+      "recipient": "qqq.qqq@example.com",
+      "subject": "[dev] Postfix 3.1.12/3.2.9/3.3.4/3.4.5",
+      "body": "dfklsdjfsjjdkjfls",
+      "attachment": false,
+      "date": "JAN 01"
+    },
+    {
+      "sender": "ggg@example.com",
+      "recipient": "ppp@example.com",
+      "subject": "Re:[Github]Brush-up on loading animation",
+      "body": "dfklsdjfsjjdkjfls",
+      "attachment": false,
+      "date": "JAN 01"
+    },
+    {
+      "sender": "hhh.hhh@example.com",
+      "recipient": "ooo.ooo@example.com",
+      "subject": "Workplace Summary for sample, Inc.:Jun 2 - Jun 9",
+      "body": "dfklsdjfsjjdkjfls",
+      "attachment": true,
+      "date": "JAN 01"
+    },
+    {
+      "sender": "iii@example.com",
+      "recipient": "nnn@example.com",
+      "subject": "I love you",
+      "body": "dfklsdjfsjjdkjfls",
+      "attachment": true,
+      "date": "2019/12/31"
+    },
+    {
+      "sender": "Pablo-Diego-Jose-Francisc@example.com",
+      "recipient": "zzz@example.com",
+      "subject": "[info:888]ABC EQUIPMENT COMPANY",
+      "body": "dfklsdjfsjjdkjfls",
+      "attachment": false,
+      "date": "2019/12/31"
+    }
+  ]
+}
