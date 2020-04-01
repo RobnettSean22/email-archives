@@ -28,10 +28,21 @@ class App extends Component {
       .map((emails, i) => {
         return (
           <div id='mail-list' key={i}>
-            <li>{emails.sender}</li>
-            <li>{emails.recipient}</li>
-            <li>{emails.subject}</li>
-            <li>{emails.date}</li>
+            <div>
+              <h2>{emails.sender}</h2>
+            </div>
+            <div>
+              {" "}
+              <h2>{emails.recipient}</h2>
+            </div>
+            <div>
+              {" "}
+              <h2>{emails.subject}</h2>
+            </div>
+            <div>
+              {" "}
+              <h2>{emails.date}</h2>
+            </div>
           </div>
         );
       });
@@ -46,10 +57,20 @@ class App extends Component {
         </div>
         <div id='email'>
           <div id='mail-order'>
-            <h2>From</h2>
-            <h2>To</h2>
-            <h2>Subject</h2>
-            <h2>Date</h2>
+            <div>
+              <h2>From</h2>
+            </div>
+            <div>
+              <h2>To</h2>
+            </div>
+            <div>
+              {" "}
+              <h2>Subject</h2>
+            </div>
+            <div>
+              {" "}
+              <h2>Date</h2>
+            </div>
           </div>
           <div id='mail-content'>{filterEmails}</div>
         </div>
