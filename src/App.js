@@ -9,6 +9,7 @@ import dateRange from "./Assets/icon_calender.svg";
 import MagGlass from "./Assets/icon_search.svg";
 
 import "./App.scss";
+import moment from "moment";
 
 class App extends Component {
   constructor(props) {
@@ -18,8 +19,8 @@ class App extends Component {
       search: "",
       archives: data.emails,
       calendarSearch: true,
-      startDate: {},
-      endDate: {},
+      startDate: moment().startOf("month"),
+      endDate: moment().endOf("month"),
       focused: null
     };
     // this.calendar = this.calendar.bind(this);
@@ -40,15 +41,16 @@ class App extends Component {
 
   render() {
     const { archives, search, calendarSearch, startDate, endDate } = this.state;
-    console.log(34343434, startDate.toString(), endDate.toString());
+    console.log(34343434, startDate._d, endDate._d);
 
     const filterEmails = archives
       .filter(mail => {
-        const formatDate = new Date(mail.date).toString();
-        console.log(formatDate);
+        let formatDate = new Date(mail.date);
+        console.log(222, startDate._d.toString(), endDate._d.toString());
+        console.log(333, formatDate);
         return (
-          (formatDate >= startDate.toString() &&
-            formatDate <= endDate.toString()) ||
+          // formatDate.toString() >= startDate._d.toString() ||
+          // formatDate.toString() <= endDate._d.toString() ||
           mail.sender.indexOf(search) !== -1 ||
           mail.recipient.indexOf(search) !== -1 ||
           mail.subject.indexOf(search) !== -1 ||
@@ -90,14 +92,15 @@ class App extends Component {
         <div id='search'>
           {calendarSearch === true ? (
             <DateRangePicker
-              startDate={startDate} // momentPropTypes.momentObj or null,
-              endDate={endDate} // momentPropTypes.momentObj or null,
+              startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+              startDateId='your_unique_start_date_id' // PropTypes.string.isRequired,
+              endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+              endDateId='your_unique_end_date_id' // PropTypes.string.isRequired,
               onDatesChange={({ startDate, endDate }) =>
                 this.setState({ startDate, endDate })
               } // PropTypes.func.isRequired,
               focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
               onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
-              numberOfMonths={1}
               isOutsideRange={() => false}
             />
           ) : (
