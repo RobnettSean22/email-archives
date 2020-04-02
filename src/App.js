@@ -1,6 +1,13 @@
 import React, { Component } from "react";
+import { DateRangePicker } from "react-dates";
+import "react-dates/initialize";
+import "react-dates/lib/css/_datepicker.css";
+
 import data from "./data/email-archives.json";
 import Clip from "./Assets/icon_clip.svg";
+import dateRange from "./Assets/icon_calender.svg";
+import MagGlass from "./Assets/icon_search.svg";
+
 import "./App.scss";
 
 class App extends Component {
@@ -9,23 +16,46 @@ class App extends Component {
 
     this.state = {
       search: "",
-      archives: data.emails
+      archives: data.emails,
+      calendarSearch: true,
+      startDate: {},
+      endDate: {},
+      focused: null
     };
+    // this.calendar = this.calendar.bind(this);
+    // this.searchFilter = this.searchFilter.bind(this);
   }
 
+  calendar = () => {
+    this.setState({
+      calendarSearch: true
+    });
+  };
+
+  searchFilter = () => {
+    this.setState({
+      calendarSearch: false
+    });
+  };
+
   render() {
-    const { archives, search } = this.state;
-    console.log(archives);
+    const { archives, search, calendarSearch, startDate, endDate } = this.state;
+    console.log(34343434, startDate.toString(), endDate.toString());
+
     const filterEmails = archives
       .filter(mail => {
+        const formatDate = new Date(mail.date).toString();
+        console.log(formatDate);
         return (
+          (formatDate >= startDate.toString() &&
+            formatDate <= endDate.toString()) ||
           mail.sender.indexOf(search) !== -1 ||
           mail.recipient.indexOf(search) !== -1 ||
           mail.subject.indexOf(search) !== -1 ||
-          mail.body.indexOf(search) !== -1 ||
-          mail.date.indexOf(search) !== -1
+          mail.body.indexOf(search) !== -1
         );
       })
+
       .map((emails, i) => {
         return (
           <div id='mail-list' key={i}>
@@ -41,7 +71,7 @@ class App extends Component {
               <h3>{emails.subject}</h3>
             </div>
             <div className={emails.attachment === true ? "attach" : "hide"}>
-              <img src={Clip} />
+              <img src={Clip} alt='' />
             </div>
             <div
               className={
@@ -54,14 +84,40 @@ class App extends Component {
           </div>
         );
       });
-    console.log(data);
+
     return (
       <div id='archive-container'>
         <div id='search'>
-          <input onChange={e => this.setState({ search: e.target.value })} />
+          {calendarSearch === true ? (
+            <DateRangePicker
+              startDate={startDate} // momentPropTypes.momentObj or null,
+              endDate={endDate} // momentPropTypes.momentObj or null,
+              onDatesChange={({ startDate, endDate }) =>
+                this.setState({ startDate, endDate })
+              } // PropTypes.func.isRequired,
+              focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+              onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+              numberOfMonths={1}
+              isOutsideRange={() => false}
+            />
+          ) : (
+            <input onChange={e => this.setState({ search: e.target.value })} />
+          )}
+          <div
+            onClick={this.calendar}
+            className={calendarSearch === true ? "hidden" : "glass"}
+          >
+            <img onClick={this.calendar} src={dateRange} alt='' />
+          </div>
+          <div
+            onClick={this.searchFilter}
+            className={calendarSearch === true ? "cal" : "hidden"}
+          >
+            <img onClick={this.searchFilter} src={MagGlass} alt='' />
+          </div>
         </div>
         <div id='title-count'>
-          <h3>Results: {filterEmails.length}mail(s)</h3>
+          <h2>Results: {filterEmails.length}mail(s)</h2>
         </div>
         <div id='email'>
           <div id='mail-order'>
