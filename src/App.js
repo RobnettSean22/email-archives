@@ -15,8 +15,8 @@ class App extends Component {
       search: "",
       archives: data.emails,
       calendarSearch: true,
-      startDate: "",
-      endDate: ""
+      startDate: null,
+      endDate: null
     };
   }
 
@@ -34,20 +34,21 @@ class App extends Component {
 
   render() {
     const { archives, search, calendarSearch, startDate, endDate } = this.state;
-    console.log(34343434, startDate._d, endDate._d);
-    const dateed = new Date("2001-03-24");
-    const dates = new Date("04/24/2001");
 
     const filterEmails = archives
       .filter(mail => {
         const formatDate = new Date(mail.date).toString();
         const startFormat = new Date(startDate).toString();
         const endFormat = new Date(endDate).toString();
-        console.log(7777, startFormat, endFormat, formatDate);
-        return (
-          (formatDate >= startFormat && formatDate <= endFormat) ||
-          mail.sender.indexOf(search) !== -1
-        );
+        if (startDate && endDate !== null) {
+          return formatDate >= startFormat && formatDate <= endFormat;
+        } else if (startDate && endDate === null) {
+          return (
+            mail.sender.indexOf(search) !== -1 ||
+            mail.recipient.indexOf(search) !== -1 ||
+            mail.subject.indexOf(search) !== -1
+          );
+        }
       })
 
       .map((emails, i) => {
