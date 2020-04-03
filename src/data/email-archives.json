@@ -6,7 +6,7 @@
       "subject": "[HR-888] Notice of official announcment",
       "body": "dfklsdjfsjjdkjfls",
       "attachment": false,
-      "date": "0:20"
+      "date": "2019/01/23"
     },
     {
       "sender": "bbb.bbbb@example.com",
@@ -14,7 +14,7 @@
       "subject": "[web:333] Web Contact",
       "body": "dfklsdjfsjjdkjfls",
       "attachment": false,
-      "date": "0:10"
+      "date": "2019/01/23"
     },
     {
       "sender": "ccc@example.com",
@@ -30,7 +30,7 @@
       "subject": "[HR-887(Revised: Office Expansion Project Team)]Notice of offical announcment",
       "body": "dfklsdjfsjjdkjfls",
       "attachment": false,
-      "date": "JAN 01"
+      "date": "2019/01/23"
     },
     {
       "sender": "eee@example.com",
@@ -38,7 +38,7 @@
       "subject": "[Github] Logout page",
       "body": "dfklsdjfsjjdkjfls",
       "attachment": false,
-      "date": "JAN 01"
+      "date": "2019/01/23"
     },
     {
       "sender": "fff.ffff@example.com",
@@ -46,7 +46,7 @@
       "subject": "[dev] Postfix 3.1.12/3.2.9/3.3.4/3.4.5",
       "body": "dfklsdjfsjjdkjfls",
       "attachment": false,
-      "date": "JAN 01"
+      "date": "2019/01/23"
     },
     {
       "sender": "ggg@example.com",
@@ -54,7 +54,7 @@
       "subject": "Re:[Github]Brush-up on loading animation",
       "body": "dfklsdjfsjjdkjfls",
       "attachment": false,
-      "date": "JAN 01"
+      "date": "2019/01/23"
     },
     {
       "sender": "hhh.hhh@example.com",
@@ -62,7 +62,7 @@
       "subject": "Workplace Summary for sample, Inc.:Jun 2 - Jun 9",
       "body": "dfklsdjfsjjdkjfls",
       "attachment": true,
-      "date": "JAN 01"
+      "date": "2019/01/23"
     },
     {
       "sender": "iii@example.com",

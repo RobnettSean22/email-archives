@@ -44,7 +44,10 @@ class App extends Component {
         const startFormat = new Date(startDate).toString();
         const endFormat = new Date(endDate).toString();
         console.log(7777, startFormat, endFormat, formatDate);
-        return formatDate >= startFormat && formatDate <= endFormat;
+        return (
+          (formatDate >= startFormat && formatDate <= endFormat) ||
+          mail.sender.indexOf(search) !== -1
+        );
       })
 
       .map((emails, i) => {
