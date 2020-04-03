@@ -18,8 +18,6 @@ class App extends Component {
       startDate: "",
       endDate: ""
     };
-    // this.calendar = this.calendar.bind(this);
-    // this.searchFilter = this.searchFilter.bind(this);
   }
 
   calendar = () => {
@@ -37,19 +35,16 @@ class App extends Component {
   render() {
     const { archives, search, calendarSearch, startDate, endDate } = this.state;
     console.log(34343434, startDate._d, endDate._d);
+    const dateed = new Date("2001-03-24");
+    const dates = new Date("04/24/2001");
 
     const filterEmails = archives
       .filter(mail => {
-        let formatDate = new Date(mail.date);
-
-        return (
-          // formatDate >= startDate._d ||
-          // formatDate <= endDate ||
-          mail.sender.indexOf(search) !== -1 ||
-          mail.recipient.indexOf(search) !== -1 ||
-          mail.subject.indexOf(search) !== -1 ||
-          mail.body.indexOf(search) !== -1
-        );
+        const formatDate = new Date(mail.date).toString();
+        const startFormat = new Date(startDate).toString();
+        const endFormat = new Date(endDate).toString();
+        console.log(7777, startFormat, endFormat, formatDate);
+        return formatDate >= startFormat && formatDate <= endFormat;
       })
 
       .map((emails, i) => {
@@ -87,6 +82,8 @@ class App extends Component {
           {calendarSearch === true ? (
             <div className='filter-date'>
               <input
+                value={startDate}
+                placeholder='YYYY/MM/DD'
                 onChange={e =>
                   this.setState({
                     startDate: e.target.value
@@ -95,6 +92,8 @@ class App extends Component {
               />
               <h2>-</h2>
               <input
+                value={endDate}
+                placeholder='YYYY/MM/DD'
                 onChange={e =>
                   this.setState({
                     endDate: e.target.value
@@ -103,7 +102,10 @@ class App extends Component {
               />
             </div>
           ) : (
-            <input onChange={e => this.setState({ search: e.target.value })} />
+            <input
+              value={search}
+              onChange={e => this.setState({ search: e.target.value })}
+            />
           )}
           <div
             onClick={this.calendar}
