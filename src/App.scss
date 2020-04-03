@@ -11,6 +11,26 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
+    .filter-date {
+      width: 24%;
+      height: 54%;
+      border-radius: 5px 0px 0px 5px;
+      background-image: url(./Assets/icon_calender.svg);
+      background-repeat: no-repeat;
+      border: 1px solid rgb(224, 224, 224);
+      background-position: 6% 43%;
+      background-size: 27px;
+      padding-left: 4.3%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      input {
+        height: 96%;
+        width: 40%;
+        background-image: none;
+        border: none;
+      }
+    }
     input {
       width: 24%;
       height: 47%;

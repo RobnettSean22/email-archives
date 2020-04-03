@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import { DateRangePicker } from "react-dates";
-import "react-dates/initialize";
-import "react-dates/lib/css/_datepicker.css";
 
 import data from "./data/email-archives.json";
 import Clip from "./Assets/icon_clip.svg";
@@ -9,7 +6,6 @@ import dateRange from "./Assets/icon_calender.svg";
 import MagGlass from "./Assets/icon_search.svg";
 
 import "./App.scss";
-import moment from "moment";
 
 class App extends Component {
   constructor(props) {
@@ -19,9 +15,8 @@ class App extends Component {
       search: "",
       archives: data.emails,
       calendarSearch: true,
-      startDate: moment().startOf("month"),
-      endDate: moment().endOf("month"),
-      focused: null
+      startDate: "",
+      endDate: ""
     };
     // this.calendar = this.calendar.bind(this);
     // this.searchFilter = this.searchFilter.bind(this);
@@ -46,11 +41,10 @@ class App extends Component {
     const filterEmails = archives
       .filter(mail => {
         let formatDate = new Date(mail.date);
-        console.log(222, startDate._d.toString(), endDate._d.toString());
-        console.log(333, formatDate);
+
         return (
-          // formatDate.toString() >= startDate._d.toString() ||
-          // formatDate.toString() <= endDate._d.toString() ||
+          // formatDate >= startDate._d ||
+          // formatDate <= endDate ||
           mail.sender.indexOf(search) !== -1 ||
           mail.recipient.indexOf(search) !== -1 ||
           mail.subject.indexOf(search) !== -1 ||
@@ -91,18 +85,23 @@ class App extends Component {
       <div id='archive-container'>
         <div id='search'>
           {calendarSearch === true ? (
-            <DateRangePicker
-              startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-              startDateId='your_unique_start_date_id' // PropTypes.string.isRequired,
-              endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-              endDateId='your_unique_end_date_id' // PropTypes.string.isRequired,
-              onDatesChange={({ startDate, endDate }) =>
-                this.setState({ startDate, endDate })
-              } // PropTypes.func.isRequired,
-              focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-              onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
-              isOutsideRange={() => false}
-            />
+            <div className='filter-date'>
+              <input
+                onChange={e =>
+                  this.setState({
+                    startDate: e.target.value
+                  })
+                }
+              />
+              <h2>-</h2>
+              <input
+                onChange={e =>
+                  this.setState({
+                    endDate: e.target.value
+                  })
+                }
+              />
+            </div>
           ) : (
             <input onChange={e => this.setState({ search: e.target.value })} />
           )}
