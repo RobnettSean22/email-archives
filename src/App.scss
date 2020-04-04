@@ -76,6 +76,10 @@
   #title-count {
     width: 100%;
     height: 4%;
+    h2 {
+      font-size: 19px;
+      color: rgb(219, 219, 219);
+    }
   }
   #email {
     width: 100%;
@@ -210,6 +214,249 @@
           margin-left: 4%;
           h3 {
             font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 414px) {
+  #archive-container {
+    width: 90vw;
+    height: 100vh;
+    margin: 0 auto;
+    overflow: hidden;
+
+    #search {
+      width: 100%;
+      height: 10%;
+
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+      .filter-date {
+        width: 24%;
+        height: 54%;
+        border-radius: 5px 0px 0px 5px;
+        background-image: url(./Assets/icon_calender.svg);
+        background-repeat: no-repeat;
+        border: 1px solid rgb(224, 224, 224);
+        background-position: 6% 43%;
+        background-size: 27px;
+        padding-left: 4.3%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        input {
+          height: 96%;
+          width: 76%;
+          background-image: none;
+          border: none;
+        }
+        .DateRangePicker {
+          position: relative;
+          display: inline-block;
+          border: none;
+
+          .DateRangePickerInput__withBorder {
+            border-radius: 2px;
+            border: none;
+            .DateInput {
+              margin: 0;
+              padding: 0;
+              background: #fff;
+              position: relative;
+              display: inline-block;
+              width: 130px;
+              vertical-align: middle;
+            }
+          }
+        }
+      }
+      input {
+        width: 24%;
+        height: 47%;
+        border-radius: 5px 0px 0px 5px;
+        background-image: url(./Assets/icon_calender.svg);
+        background-repeat: no-repeat;
+        background-position: 6% 43%;
+        background-size: 27px;
+        padding-left: 4.3%;
+      }
+      .glass {
+        height: 56%;
+        width: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #ededeb;
+        border-radius: 0px 7px 7px 0px;
+
+        img {
+          width: 60%;
+          height: 67%;
+        }
+      }
+      .cal {
+        height: 56%;
+        width: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #ededeb;
+        border-radius: 0px 7px 7px 0px;
+
+        img {
+          width: 60%;
+          height: 67%;
+        }
+      }
+      .hidden {
+        display: none;
+      }
+    }
+    #title-count {
+      width: 100%;
+      height: 4%;
+      h2 {
+        font-size: 19px;
+        color: rgb(219, 219, 219);
+      }
+    }
+    #email {
+      width: 100%;
+      height: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+
+      #mail-order {
+        width: 100%;
+        height: 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid rgb(224, 224, 224);
+        border-bottom: 1px solid rgb(224, 224, 224);
+        background: rgb(237, 237, 235);
+        box-shadow: 0px -1px 3px 0px rgba(0, 0, 0, 0.75);
+        div {
+          display: flex;
+
+          align-items: center;
+        }
+        #from {
+          height: 100%;
+          width: 20%;
+          h2 {
+            font-size: 17px;
+          }
+        }
+        #to {
+          height: 100%;
+          width: 20%;
+          h2 {
+            font-size: 17px;
+          }
+        }
+        #about {
+          height: 100%;
+          width: 45%;
+          margin-left: 3%;
+          h2 {
+            font-size: 17px;
+          }
+        }
+        #when {
+          height: 100%;
+          width: 13%;
+          h2 {
+            margin-left: 21%;
+            font-size: 17px;
+          }
+        }
+      }
+      #mail-content {
+        width: 100%;
+        height: 90%;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
+        background-image: url(./Assets/logo.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 200px;
+
+        #mail-list {
+          width: 100%;
+          height: 8.5%;
+          display: flex;
+
+          align-items: center;
+
+          border-bottom: 1px solid rgb(205, 205, 205);
+          border-bottom: 1px solid rgb(205, 205, 205);
+          background: white;
+          .recipient {
+            width: 20%;
+            height: 100%;
+            h3 {
+              font-size: 16px;
+            }
+          }
+          .subject {
+            width: 43%;
+            height: 100%;
+            margin-left: 3%;
+            h3 {
+              font-size: 16px;
+            }
+          }
+          .sender {
+            width: 20%;
+            height: 100%;
+            h3 {
+              margin-left: 3%;
+              font-size: 16px;
+            }
+          }
+          .attach {
+            width: 2%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+              width: 100%;
+              height: 48%;
+            }
+          }
+          .hide {
+            display: none;
+          }
+          .date {
+            width: 9%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-left: 2%;
+            h3 {
+              font-size: 16px;
+            }
+          }
+          .date-with-attachment {
+            width: 9%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-left: 4%;
+            h3 {
+              font-size: 16px;
+            }
           }
         }
       }
