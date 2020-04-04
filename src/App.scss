@@ -222,10 +222,7 @@
 }
 @media (max-width: 414px) {
   #archive-container {
-    width: 90vw;
-    height: 100vh;
-    margin: 0 auto;
-    overflow: hidden;
+    width: 99vw;
 
     #search {
       width: 100%;
@@ -235,8 +232,8 @@
       justify-content: flex-start;
       align-items: flex-end;
       .filter-date {
-        width: 24%;
-        height: 54%;
+        width: 55%;
+        height: 59%;
         border-radius: 5px 0px 0px 5px;
         background-image: url(./Assets/icon_calender.svg);
         background-repeat: no-repeat;
@@ -273,13 +270,8 @@
         }
       }
       .cal {
-        height: 56%;
-        width: 5%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #ededeb;
-        border-radius: 0px 7px 7px 0px;
+        height: 62%;
+        width: 14%;
 
         img {
           width: 60%;

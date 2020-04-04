@@ -2,6 +2,7 @@
   position: relative;
   display: inline-block;
   border: none;
+  height: 100%;
 }
 .DateRangePickerInput__withBorder {
   border-radius: 2px;
@@ -24,4 +25,28 @@
 }
 .DateRangePickerInput_arrow_svg {
   display: none;
+}
+@media (max-width: 411px) {
+  .DateRangePicker {
+    height: 100%;
+    div {
+      height: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      DateRangeInput {
+        height: 100%;
+        .DateInput {
+          height: 100%;
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+          .DateInput_input {
+            height: 100%;
+            width: 30%;
+          }
+        }
+      }
+    }
+  }
 }
