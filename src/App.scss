@@ -247,33 +247,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        input {
-          height: 96%;
-          width: 76%;
-          background-image: none;
-          border: none;
-        }
-        .DateRangePicker {
-          position: relative;
-          display: inline-block;
-          border: none;
-
-          .DateRangePickerInput__withBorder {
-            border-radius: 2px;
-            border: none;
-            .DateInput {
-              margin: 0;
-              padding: 0;
-              background: #fff;
-              position: relative;
-              display: inline-block;
-              width: 130px;
-              vertical-align: middle;
-            }
-          }
-        }
       }
-      input {
+      .search-input {
         width: 24%;
         height: 47%;
         border-radius: 5px 0px 0px 5px;

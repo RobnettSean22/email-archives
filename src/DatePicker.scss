@@ -1,0 +1,27 @@
+.DateRangePicker {
+  position: relative;
+  display: inline-block;
+  border: none;
+}
+.DateRangePickerInput__withBorder {
+  border-radius: 2px;
+  border: none;
+}
+.DateInput {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  position: relative;
+  display: inline-block;
+  width: 130px;
+  vertical-align: middle;
+}
+.DateInput_input {
+  height: 96%;
+  width: 76%;
+  background-image: none;
+  border: none;
+}
+.DateRangePickerInput_arrow_svg {
+  display: none;
+}

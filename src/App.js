@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import {
-  DateRangePicker,
-  SingleDatePicker,
-  DayPickerRangeController
-} from "react-dates";
+import { DateRangePicker } from "react-dates";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
+import "./DatePicker.scss";
 import "./App.scss";
 import moment from "moment";
 import data from "./data/email-archives.json";
@@ -104,10 +101,10 @@ class App extends Component {
                 onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,	              onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
                 isOutsideRange={() => false}
               />{" "}
-              />
             </div>
           ) : (
             <input
+              className='search-input'
               value={search}
               onChange={e => this.setState({ search: e.target.value })}
             />
