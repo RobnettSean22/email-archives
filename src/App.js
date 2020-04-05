@@ -41,8 +41,6 @@ class App extends Component {
     const filterEmails = archives
       .filter(mail => {
         const formatDate = new Date(mail.date);
-        // const startFormat = new Date(startDate);
-        // const endFormat = new Date(endDate);
 
         if (startDate && endDate !== null) {
           return formatDate >= startDate._d && formatDate <= endDate._d;
@@ -92,13 +90,13 @@ class App extends Component {
               <DateRangePicker
                 startDate={startDate} // momentPropTypes.momentObj or null,	              startDate={this.state.startDate} // momentPropTypes.momentObj or null,
                 endDate={endDate} // momentPropTypes.momentObj or null,	              startDateId='your_unique_start_date_id' // PropTypes.string.isRequired,
-                endDate={this.state.endDate} // momentPropTypes.momentObj or null,
                 endDateId='your_unique_end_date_id' // PropTypes.string.isRequired,
                 onDatesChange={({ startDate, endDate }) =>
                   this.setState({ startDate, endDate })
                 } // PropTypes.func.isRequired,	              } // PropTypes.func.isRequired,
                 focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,	              focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                 onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,	              onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+                numberOfMonths={1}
                 isOutsideRange={() => false}
               />{" "}
             </div>

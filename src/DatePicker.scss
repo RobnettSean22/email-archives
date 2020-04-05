@@ -23,30 +23,17 @@
   background-image: none;
   border: none;
 }
-.DateRangePickerInput_arrow_svg {
-  display: none;
+.DateRangePickerInput_arrow {
+  display: none !important;
 }
-@media (max-width: 411px) {
-  .DateRangePicker {
-    height: 100%;
-    div {
-      height: 100%;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      DateRangeInput {
-        height: 100%;
-        .DateInput {
-          height: 100%;
-          display: flex;
-          justify-content: space-evenly;
-          align-items: center;
-          .DateInput_input {
-            height: 100%;
-            width: 30%;
-          }
-        }
-      }
-    }
+
+@media (max-width: 530px) {
+  .DateInput {
+    width: 120px;
+  }
+  .DateInput_input {
+    height: 51%;
+    width: 100%;
+    padding: 11px 0px 9px 0px;
   }
 }
