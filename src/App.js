@@ -55,7 +55,7 @@ class App extends Component {
 
       .map((emails, i) => {
         return (
-          <div id='mail-list' key={i}>
+          <div className='mail-list mobile-mail-list' key={i}>
             <div className='sender'>
               <h3>{emails.sender}</h3>
             </div>
@@ -77,6 +77,32 @@ class App extends Component {
             >
               {" "}
               <h3>{emails.date}</h3>
+            </div>
+            <div className='mobile-sender'>
+              <div className='sender'>
+                <h3>{emails.sender}</h3>
+              </div>
+              <div className='recipient'>
+                {" "}
+                <h3>{emails.recipient}</h3>
+              </div>
+              <div className='subject'>
+                {" "}
+                <h3>{emails.subject}</h3>
+              </div>
+            </div>
+            <div className='mobile-date'>
+              <div className={emails.attachment === true ? "attach" : "hide"}>
+                <img src={Clip} alt='' />
+              </div>
+              <div
+                className={
+                  emails.attachment === true ? "date" : "date-with-attachment"
+                }
+              >
+                {" "}
+                <h3>{emails.date}</h3>
+              </div>
             </div>
           </div>
         );
