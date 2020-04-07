@@ -3,11 +3,16 @@
   display: inline-block;
   border: none;
   height: 100%;
+  width: 100%;
 }
 .DateRangePickerInput__withBorder {
   border-radius: 2px;
   border: none;
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
+
 .DateInput {
   margin: 0;
   padding: 0;
@@ -27,7 +32,7 @@
   display: none !important;
 }
 
-@media (max-width: 530px) {
+@media (min-width: 900px) {
   .DateInput {
     width: 120px;
   }
