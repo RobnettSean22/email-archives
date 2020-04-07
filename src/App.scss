@@ -1,5 +1,6 @@
 #archive-container {
   width: 99vw;
+  height: 100vh;
 
   #search {
     width: 100%;
@@ -44,6 +45,11 @@
     .cal {
       height: 62%;
       width: 14%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ededeb;
+      border-radius: 0px 7px 7px 0px;
 
       img {
         width: 60%;
@@ -254,7 +260,6 @@
 }
 @media (min-width: 900px) {
   #archive-container {
-    height: 100vh;
     margin: 0 auto;
     overflow: hidden;
 
