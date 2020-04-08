@@ -11,6 +11,7 @@ import dateRange from "./Assets/icon_calender.svg";
 import MagGlass from "./Assets/icon_search.svg";
 import Up from "./Assets/icon_arrow01.svg";
 import Right from "./Assets/icon_arrow02.svg";
+import Mail from "./Assets/icon_mail_sp.svg";
 
 class App extends Component {
   constructor(props) {
@@ -80,6 +81,9 @@ class App extends Component {
               {" "}
               <h3>{emails.date}</h3>
             </div>
+
+            <img className='mail-icon' src={Mail} alt='' />
+
             <div className='mobile-sender'>
               <div className='mobilesender'>
                 <h3>{emails.sender}</h3>
