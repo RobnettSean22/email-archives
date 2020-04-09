@@ -116,10 +116,15 @@ class App extends Component {
       })
 
       .map((emails, i) => {
+        const getIndex = emails.sender.substring(16);
+        const toFit =
+          emails.sender.length > 15
+            ? emails.sender.replace(getIndex, "...")
+            : emails.sender;
         return (
           <div className='mail-list' key={i}>
             <div className='sender'>
-              <h3>{emails.sender}</h3>
+              <h3>{toFit}</h3>
             </div>
             <div className='recipient'>
               {" "}
@@ -127,7 +132,7 @@ class App extends Component {
             </div>
             <div className='subject'>
               {" "}
-              <h3>{emails.subject}</h3>
+              <h3>{emails.subject.substring(0, 54)}</h3>
             </div>
             <div className={emails.attachment === true ? "attach" : "hide"}>
               <img src={Clip} alt='' />
