@@ -22,7 +22,11 @@ class App extends Component {
       search: "",
       calendarSearch: true,
       startDate: moment().startOf("month"),
-      endDate: moment().endOf("month")
+      endDate: moment().endOf("month"),
+      from: true,
+      to: false,
+      subject: false,
+      date: false
     };
   }
 
@@ -38,8 +42,63 @@ class App extends Component {
     });
   };
 
+  focusFrom = () => {
+    this.setState({
+      from: true,
+      to: false,
+      subject: false,
+      date: false
+    });
+  };
+  focusTo = () => {
+    this.setState({
+      from: false,
+      to: true,
+      subject: false,
+      date: false
+    });
+  };
+  focusSubject = () => {
+    this.setState({
+      from: false,
+      to: false,
+      subject: true,
+      date: false
+    });
+  };
+  focusDate = () => {
+    this.setState({
+      from: false,
+      to: false,
+      subject: false,
+      date: true
+    });
+  };
+
+  sortByRecipient = () => {
+    this.setState({
+      archives: this.state.archives.sort((a, b) => {
+        const abc = this.state.from ? -1 : 1;
+        return abc * b.recipient.localeCompare(a.recipient.toLowerCase());
+      })
+    });
+  };
+  sortBySender = () => {};
+  sortBySubject = () => {};
+  sortByDate = () => {};
+
   render() {
-    const { archives, search, calendarSearch, startDate, endDate } = this.state;
+    const {
+      archives,
+      search,
+      calendarSearch,
+      startDate,
+      endDate,
+      from,
+      to,
+      subject,
+      date
+    } = this.state;
 
     const filterEmails = archives
       .filter(mail => {
@@ -49,16 +108,16 @@ class App extends Component {
           return formatDate >= startDate._d && formatDate <= endDate._d;
         } else if (startDate && endDate === null) {
           return (
-            mail.sender.indexOf(search) !== -1 ||
-            mail.recipient.indexOf(search) !== -1 ||
-            mail.subject.indexOf(search) !== -1
+            mail.sender.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
+            mail.recipient.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
+            mail.subject.toLowerCase().indexOf(search.toLowerCase()) !== -1
           );
         }
       })
 
       .map((emails, i) => {
         return (
-          <div className='mail-list ' key={i}>
+          <div className='mail-list' key={i}>
             <div className='sender'>
               <h3>{emails.sender}</h3>
             </div>
@@ -129,17 +188,16 @@ class App extends Component {
           {calendarSearch === true ? (
             <div className='filter-date'>
               <DateRangePicker
-                startDate={startDate} // momentPropTypes.momentObj or null,	              startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-                endDate={endDate} // momentPropTypes.momentObj or null,	              startDateId='your_unique_start_date_id' // PropTypes.string.isRequired,
-                endDateId='your_unique_end_date_id' // PropTypes.string.isRequired,
+                startDate={startDate}
+                endDate={endDate}
                 onDatesChange={({ startDate, endDate }) =>
                   this.setState({ startDate, endDate })
-                } // PropTypes.func.isRequired,	              } // PropTypes.func.isRequired,
-                focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,	              focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-                onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,	              onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+                }
+                focusedInput={this.state.focusedInput}
+                onFocusChange={focusedInput => this.setState({ focusedInput })}
                 numberOfMonths={1}
                 isOutsideRange={() => false}
-              />{" "}
+              />
             </div>
           ) : (
             <input
@@ -167,29 +225,46 @@ class App extends Component {
         <div id='email'>
           <div id='mail-order'>
             <div id='from'>
-              <h2>From</h2>
+              <h2 onClick={this.focusFrom}>From</h2>
               <div>
-                <img src={Up} alt='' />
+                <img
+                  onClick={this.sortByRecipient}
+                  className={from === true ? "show-arrow" : "hide-arrow"}
+                  src={Up}
+                  alt=''
+                />
               </div>
             </div>
             <div id='to'>
-              <h2>To</h2>
+              <h2 onClick={this.focusTo}>To</h2>
               <div>
-                <img src={Up} alt='' />
+                <img
+                  className={to === true ? "show-arrow" : "hide-arrow"}
+                  src={Up}
+                  alt=''
+                />
               </div>
             </div>
             <div id='about'>
               {" "}
-              <h2>Subject</h2>
+              <h2 onClick={this.focusSubject}>Subject</h2>
               <div>
-                <img src={Up} alt='' />
+                <img
+                  className={subject === true ? "show-arrow" : "hide-arrow"}
+                  src={Up}
+                  alt=''
+                />
               </div>
             </div>
             <div id='when'>
               {" "}
-              <h2>Date</h2>
+              <h2 onClick={this.focusDate}>Date</h2>
               <div>
-                <img src={Up} alt='' />
+                <img
+                  className={date === true ? "show-arrow" : "hide-arrow"}
+                  src={Up}
+                  alt=''
+                />
               </div>
             </div>
           </div>
