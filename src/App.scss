@@ -345,7 +345,7 @@
     }
     #email {
       #mail-order {
-        justify-content: space-between;
+        justify-content: flex-start;
         div {
           display: flex;
           justify-content: flex-start;
@@ -370,11 +370,11 @@
         }
         #to {
           height: 100%;
-          width: 15%;
-
+          width: 17%;
+          margin-left: 5%;
           h2 {
             font-size: 17px;
-            margin-left: 11%;
+            margin-left: 0%;
           }
           .show-arrow {
             width: 7%;
@@ -392,7 +392,7 @@
 
           h2 {
             font-size: 17px;
-            margin-left: 1.5%;
+            margin-left: 0%;
           }
           .show-arrow {
             width: 7%;
@@ -406,21 +406,25 @@
         #when {
           //check
           display: flex;
-          justify-content: flex-end;
+          justify-content: center;
           align-items: center;
           height: 100%;
-          width: 13%;
+          width: 12%;
           h2 {
-            margin-right: 12%;
             font-size: 17px;
+            margin-left: 40%;
           }
-          .show-arrow {
-            width: 14%;
-            height: 30%;
-            margin-left: 9%;
-          }
-          .hide-arrow {
-            display: none;
+          div {
+            width: 20%;
+            height: 100%;
+            .show-arrow {
+              width: 52%;
+              height: 30%;
+              margin-left: 9%;
+            }
+            .hide-arrow {
+              display: none;
+            }
           }
         }
       }
@@ -518,22 +522,34 @@
             display: flex;
             width: 20%;
             height: 100%;
-            h3 {
+            .reg {
               font-size: 16px;
+            }
+            .bold {
+              font-size: 18.75;
             }
           }
           .subject {
             display: flex;
             width: 43%;
             height: 100%;
-            h3 {
+            .reg {
               font-size: 16px;
+            }
+            .bold {
+              font-size: 18.75;
             }
           }
           .sender {
             width: 20%;
             height: 100%;
             display: flex;
+            .reg {
+              font-size: 16px;
+            }
+            .bold {
+              font-size: 18.75;
+            }
           }
           .attach {
             width: 2%;
@@ -550,6 +566,12 @@
           .date {
             display: flex;
             margin-left: 6%;
+            .reg {
+              font-size: 16px;
+            }
+            .bold {
+              font-size: 18.75;
+            }
           }
           .date-with-attachment {
             width: 9%;
@@ -558,6 +580,12 @@
             align-items: center;
             justify-content: flex-start;
             margin-left: 8%;
+            .reg {
+              font-size: 16px;
+            }
+            .bold {
+              font-size: 18.75;
+            }
           }
         }
       }

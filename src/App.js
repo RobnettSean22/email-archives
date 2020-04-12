@@ -110,7 +110,8 @@ class App extends Component {
           return (
             mail.sender.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
             mail.recipient.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
-            mail.subject.toLowerCase().indexOf(search.toLowerCase()) !== -1
+            mail.subject.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
+            mail.info.toLowerCase().indexOf(search.toLowerCase())
           );
         }
       })
@@ -124,15 +125,19 @@ class App extends Component {
         return (
           <div className='mail-list' key={i}>
             <div className='sender'>
-              <h3>{toFit}</h3>
+              <h3 className={from === true ? "bolded" : "reg"}>{toFit}</h3>
             </div>
             <div className='recipient'>
               {" "}
-              <h3>{emails.recipient}</h3>
+              <h3 className={to === true ? "bolded" : "reg"}>
+                {emails.recipient}
+              </h3>
             </div>
             <div className='subject'>
               {" "}
-              <h3>{emails.subject.substring(0, 54)}</h3>
+              <h3 className={subject === true ? "bolded" : "reg"}>
+                {emails.subject.substring(0, 54)}
+              </h3>
             </div>
             <div className={emails.attachment === true ? "attach" : "hide"}>
               <img src={Clip} alt='' />
@@ -143,7 +148,9 @@ class App extends Component {
               }
             >
               {" "}
-              <h3>{emails.date}</h3>
+              <h3 className={date === true ? "bolded" : "reg"}>
+                {emails.date}
+              </h3>
             </div>
 
             <img className='mail-icon' src={Mail} alt='' />
