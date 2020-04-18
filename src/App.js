@@ -26,7 +26,8 @@ class App extends Component {
       from: true,
       to: false,
       subject: false,
-      date: false
+      date: false,
+      showInfo: false
     };
   }
 
@@ -83,9 +84,20 @@ class App extends Component {
       })
     });
   };
-  sortBySender = () => {};
-  sortBySubject = () => {};
-  sortByDate = () => {};
+  infoVisible = () => {
+    this.serState({
+      showInfo: true
+    });
+  };
+  infoVisible = () => {
+    this.serState({
+      showInfo: false
+    });
+  };
+
+  // sortBySender = () => {};
+  // sortBySubject = () => {};
+  // sortByDate = () => {};
 
   render() {
     const {
@@ -97,7 +109,8 @@ class App extends Component {
       from,
       to,
       subject,
-      date
+      date,
+      showInfo
     } = this.state;
 
     const filterEmails = archives
