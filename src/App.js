@@ -84,6 +84,14 @@ class App extends Component {
       })
     });
   };
+  sortByRecipientReverse = () => {
+    this.setState({
+      archives: this.state.archives.sort((a, b) => {
+        const abc = this.state.from ? -1 : 1;
+        return abc * a.recipient.localeCompare(b.recipient.toLowerCase());
+      })
+    });
+  };
   infoVisible = () => {
     this.serState({
       showInfo: true
@@ -95,8 +103,22 @@ class App extends Component {
     });
   };
 
-  // sortBySender = () => {};
-  // sortBySubject = () => {};
+  sortBySender = () => {
+    this.setState({
+      archives: this.state.archives.sort((a, b) => {
+        const abc = this.state.from ? -1 : 1;
+        return abc * b.sender.localeCompare(a.sender.toLowerCase());
+      })
+    });
+  };
+  sortBySubject = () => {
+    this.setState({
+      archives: this.state.archives.sort((a, b) => {
+        const abc = this.state.from ? -1 : 1;
+        return abc * b.subject.localeCompare(a.subject.toLowerCase());
+      })
+    });
+  };
   // sortByDate = () => {};
 
   render() {
@@ -264,6 +286,7 @@ class App extends Component {
               <h2 onClick={this.focusTo}>To</h2>
               <div>
                 <img
+                  onClick={this.sortBySender}
                   className={to === true ? "show-arrow" : "hide-arrow"}
                   src={Up}
                   alt=''
@@ -273,13 +296,6 @@ class App extends Component {
             <div id='about'>
               {" "}
               <h2 onClick={this.focusSubject}>Subject</h2>
-              <div>
-                <img
-                  className={subject === true ? "show-arrow" : "hide-arrow"}
-                  src={Up}
-                  alt=''
-                />
-              </div>
             </div>
             <div id='when'>
               {" "}
