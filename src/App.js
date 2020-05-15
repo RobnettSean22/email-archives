@@ -12,6 +12,7 @@ import MagGlass from "./Assets/icon_search.svg";
 import Up from "./Assets/icon_arrow01.svg";
 import Right from "./Assets/icon_arrow02.svg";
 import Mail from "./Assets/icon_mail_sp.svg";
+import EmailWindow from "./Component/EmailWindow";
 
 class App extends Component {
   constructor(props) {
@@ -29,6 +30,13 @@ class App extends Component {
       date: false,
       showInfo: false
     };
+  }
+  componentDidMount() {
+    this.externalWindow = window.open(
+      "",
+      "",
+      "width=600,height=400,left=200,top=200"
+    );
   }
 
   calendar = () => {
@@ -102,6 +110,13 @@ class App extends Component {
       showInfo: false
     });
   };
+  emailBodyWindow = () => {
+    this.externalWindow = window.open(
+      "",
+      "",
+      "width=600,height=400,left=200,top=200"
+    );
+  };
 
   sortBySender = () => {
     this.setState({
@@ -134,6 +149,7 @@ class App extends Component {
       date,
       showInfo
     } = this.state;
+    console.log(archives);
 
     const filterEmails = archives
       .filter(mail => {
