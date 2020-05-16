@@ -106,11 +106,7 @@ class Emails extends Component {
     });
   };
   emailBodyWindow = id => {
-    this.externalWindow = window.open(
-      `/selecter/${id}`,
-      "",
-      "width=600,height=400,left=200,top=200"
-    );
+    this.props.history.push(`/selected/${id}`);
   };
 
   sortBySender = () => {
@@ -172,7 +168,7 @@ class Emails extends Component {
           <div
             className='mail-list'
             key={i}
-            onClick={() => this.emailBodyWindow(i)}
+            onClick={() => this.emailBodyWindow(emails.sender)}
           >
             <div className='sender'>
               <h3 className={from === true ? "bolded" : "reg"}>{toFit}</h3>

@@ -8,17 +8,7 @@ class App extends Component {
       <div>
         <Switch>
           <Route exact path='/' component={Emails} />
-          <Route
-            excat
-            path={
-              (this.externalWindow = window.open(
-                `/selecter/id`,
-                "",
-                "width=600,height=400,left=200,top=200"
-              ))
-            }
-            component={EmailWindow}
-          />
+          <Route excat path={"/selected/:id"} component={EmailWindow} />
         </Switch>
       </div>
     );
