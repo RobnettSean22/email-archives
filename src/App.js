@@ -8,7 +8,7 @@ class App extends Component {
       <div>
         <Switch>
           <Route exact path='/' component={Emails} />
-          <Route excat path={"/selected/:id"} component={EmailWindow} />
+          <Route excat path={"/selected/"} component={EmailWindow} />
         </Switch>
       </div>
     );

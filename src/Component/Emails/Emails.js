@@ -105,8 +105,8 @@ class Emails extends Component {
       showInfo: false
     });
   };
-  emailBodyWindow = id => {
-    this.props.history.push(`/selected/${id}`);
+  emailBodyWindow = () => {
+    this.props.history.push(`/selected/`);
   };
 
   sortBySender = () => {
