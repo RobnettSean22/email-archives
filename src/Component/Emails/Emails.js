@@ -12,7 +12,8 @@ import MagGlass from "../../Assets/icon_search.svg";
 import Up from "../../Assets/icon_arrow01.svg";
 import Right from "../../Assets/icon_arrow02.svg";
 import Mail from "../../Assets/icon_mail_sp.svg";
-import Popout from "../lib/react-popout.jsx";
+import EmailWindow from "../EmailWindow";
+import Popout from "react-popout";
 
 class Emails extends Component {
   constructor(props) {
@@ -163,11 +164,7 @@ class Emails extends Component {
             ? emails.sender.replace(getIndex, "...")
             : emails.sender;
         return (
-          <div
-            className='mail-list'
-            key={i}
-            onClick={() => this.emailBodyWindow(emails.sender)}
-          >
+          <div className='mail-list' key={i} onClick={this.popout}>
             <div className='sender'>
               <h3 className={from === true ? "bolded" : "reg"}>{toFit}</h3>
             </div>
@@ -320,6 +317,11 @@ class Emails extends Component {
           </div>
           <div id='mail-content'>{filterEmails}</div>
         </div>
+        {this.state.isPoppedOut === true ? (
+          <Popout>
+            <EmailWindow />
+          </Popout>
+        ) : null}
       </div>
     );
   }
