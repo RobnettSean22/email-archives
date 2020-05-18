@@ -12,6 +12,7 @@ import MagGlass from "../../Assets/icon_search.svg";
 import Up from "../../Assets/icon_arrow01.svg";
 import Right from "../../Assets/icon_arrow02.svg";
 import Mail from "../../Assets/icon_mail_sp.svg";
+import ReactDOM from "react-dom";
 import EmailWindow from "../../Component/EmailWindow";
 
 class Emails extends Component {
@@ -27,9 +28,10 @@ class Emails extends Component {
       from: true,
       to: false,
       subject: false,
-      date: false,
-      showInfo: false
+      date: false
     };
+    this.containerEL = document.createElement("div");
+    this.externalWindow = null;
     this.emailBodyWindow = this.emailBodyWindow.bind(this);
   }
   componentDidMount() {}
@@ -95,18 +97,15 @@ class Emails extends Component {
       })
     });
   };
-  infoVisible = () => {
-    this.serState({
-      showInfo: true
-    });
-  };
-  infoVisible = () => {
-    this.serState({
-      showInfo: false
-    });
-  };
+
   emailBodyWindow = () => {
-    this.props.history.push(`/selected/`);
+    this.externalWindow = window.open(
+      "",
+      "",
+      "width=600,height=400,left=200,top=200"
+    );
+    this.externalWindow.document.body.appendChild(this.containerEl);
+    return ReactDOM.createPortal(this.props.children, this.containerEl);
   };
 
   sortBySender = () => {
@@ -137,10 +136,8 @@ class Emails extends Component {
       from,
       to,
       subject,
-      date,
-      showInfo
+      date
     } = this.state;
-    console.log(archives);
 
     const filterEmails = archives
       .filter(mail => {
