@@ -12,8 +12,7 @@ import MagGlass from "../../Assets/icon_search.svg";
 import Up from "../../Assets/icon_arrow01.svg";
 import Right from "../../Assets/icon_arrow02.svg";
 import Mail from "../../Assets/icon_mail_sp.svg";
-import ReactDOM from "react-dom";
-import EmailWindow from "../../Component/EmailWindow";
+import Popout from "../lib/react-popout.jsx";
 
 class Emails extends Component {
   constructor(props) {
@@ -28,11 +27,11 @@ class Emails extends Component {
       from: true,
       to: false,
       subject: false,
-      date: false
+      date: false,
+      isPoppedOut: false
     };
-    this.containerEL = document.createElement("div");
-    this.externalWindow = null;
-    this.emailBodyWindow = this.emailBodyWindow.bind(this);
+    this.popout = this.popout.bind(this);
+    this.popoutClosed = this.popoutClosed.bind(this);
   }
   componentDidMount() {}
 
@@ -41,6 +40,14 @@ class Emails extends Component {
       calendarSearch: true
     });
   };
+
+  popout() {
+    this.setState({ isPoppedOut: true });
+  }
+
+  popoutClosed() {
+    this.setState({ isPoppedOut: false });
+  }
 
   searchFilter = () => {
     this.setState({
@@ -81,6 +88,10 @@ class Emails extends Component {
     });
   };
 
+  emailBodyWindow = () => {
+    this.props.history.push("/selected/");
+  };
+
   sortByRecipient = () => {
     this.setState({
       archives: this.state.archives.sort((a, b) => {
@@ -96,16 +107,6 @@ class Emails extends Component {
         return abc * a.recipient.localeCompare(b.recipient.toLowerCase());
       })
     });
-  };
-
-  emailBodyWindow = () => {
-    this.externalWindow = window.open(
-      "",
-      "",
-      "width=600,height=400,left=200,top=200"
-    );
-    this.externalWindow.document.body.appendChild(this.containerEl);
-    return ReactDOM.createPortal(this.props.children, this.containerEl);
   };
 
   sortBySender = () => {
