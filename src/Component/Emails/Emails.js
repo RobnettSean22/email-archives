@@ -96,6 +96,11 @@ class Emails extends Component {
     });
   };
 
+  emailBody = x => {
+    var newWindow = window.open("", "MsgWindow", "width=200,height=400");
+    newWindow.document.write("<p>This window's name is: " + x + "</p>");
+  };
+
   render() {
     const {
       archives,
@@ -123,7 +128,11 @@ class Emails extends Component {
             ? emails.sender.replace(getIndex, "...")
             : emails.sender;
         return (
-          <div className='mail-list' key={i} onClick={this.emailBodyWindow}>
+          <div
+            className='mail-list'
+            key={i}
+            onClick={e => this.emailBody(emails.info)}
+          >
             <div className='sender'>
               <h3 className={from === true ? "bolded" : "reg"}>{toFit}</h3>
             </div>

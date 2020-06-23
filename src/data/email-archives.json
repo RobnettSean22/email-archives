@@ -4,7 +4,7 @@
       "sender": "aaa@example.com",
       "recipient": "zzz@example.com",
       "subject": "[HR-888] Notice of official announcment",
-      "info": "dfklsdjfsjjdkjfls",
+      "info": "fire",
       "attachment": false,
       "date": "2020/06/25"
     },
@@ -12,7 +12,7 @@
       "sender": "bbb.bbbb@example.com",
       "recipient": "yyy@example.com",
       "subject": "[web:333] Web Contact",
-      "info": "dfklsdjfsjjdkjfls",
+      "info": "ice",
       "attachment": false,
       "date": "2020/06/24"
     },
