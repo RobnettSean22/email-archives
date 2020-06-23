@@ -12,8 +12,6 @@ import MagGlass from "../../Assets/icon_search.svg";
 import Up from "../../Assets/icon_arrow01.svg";
 import Right from "../../Assets/icon_arrow02.svg";
 import Mail from "../../Assets/icon_mail_sp.svg";
-import EmailWindow from "../EmailWindow";
-import Popout from "react-popout";
 
 class Emails extends Component {
   constructor(props) {
@@ -23,38 +21,15 @@ class Emails extends Component {
       archives: data.emails,
       search: "",
       calendarSearch: true,
-      startDate: moment().startOf("month"),
+      startDate: moment().startOf("year"),
       endDate: moment().endOf("month"),
       from: true,
       to: false,
       subject: false,
-      date: false,
-      isPoppedOut: false
+      date: false
     };
-    this.popout = this.popout.bind(this);
-    this.popoutClosed = this.popoutClosed.bind(this);
   }
   componentDidMount() {}
-
-  calendar = () => {
-    this.setState({
-      calendarSearch: true
-    });
-  };
-
-  popout() {
-    this.setState({ isPoppedOut: true });
-  }
-
-  popoutClosed() {
-    this.setState({ isPoppedOut: false });
-  }
-
-  searchFilter = () => {
-    this.setState({
-      calendarSearch: false
-    });
-  };
 
   focusFrom = () => {
     this.setState({
@@ -89,9 +64,7 @@ class Emails extends Component {
     });
   };
 
-  emailBodyWindow = () => {
-    this.props.history.push("/selected/");
-  };
+  emailBodyWindow = () => {};
 
   sortByRecipient = () => {
     this.setState({
@@ -126,7 +99,6 @@ class Emails extends Component {
       })
     });
   };
-  // sortByDate = () => {};
 
   render() {
     const {
@@ -145,16 +117,7 @@ class Emails extends Component {
       .filter(mail => {
         const formatDate = new Date(mail.date);
 
-        if (startDate && endDate !== null) {
-          return formatDate >= startDate._d && formatDate <= endDate._d;
-        } else if (startDate && endDate === null) {
-          return (
-            mail.sender.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
-            mail.recipient.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
-            mail.subject.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
-            mail.info.toLowerCase().indexOf(search.toLowerCase())
-          );
-        }
+        return formatDate >= startDate._d && formatDate <= endDate._d;
       })
 
       .map((emails, i) => {
@@ -164,7 +127,7 @@ class Emails extends Component {
             ? emails.sender.replace(getIndex, "...")
             : emails.sender;
         return (
-          <div className='mail-list' key={i} onClick={this.popout}>
+          <div className='mail-list' key={i} onClick={this.emailBodyWindow}>
             <div className='sender'>
               <h3 className={from === true ? "bolded" : "reg"}>{toFit}</h3>
             </div>
@@ -259,12 +222,7 @@ class Emails extends Component {
               onChange={e => this.setState({ search: e.target.value })}
             />
           )}
-          <div
-            onClick={this.calendar}
-            className={calendarSearch === true ? "hidden" : "glass"}
-          >
-            <img onClick={this.calendar} src={dateRange} alt='' />
-          </div>
+
           <div
             onClick={this.searchFilter}
             className={calendarSearch === true ? "cal" : "hidden"}
@@ -317,11 +275,6 @@ class Emails extends Component {
           </div>
           <div id='mail-content'>{filterEmails}</div>
         </div>
-        {this.state.isPoppedOut === true ? (
-          <Popout>
-            <EmailWindow />
-          </Popout>
-        ) : null}
       </div>
     );
   }
