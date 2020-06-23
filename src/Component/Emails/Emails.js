@@ -97,8 +97,18 @@ class Emails extends Component {
   };
 
   emailBody = x => {
-    var newWindow = window.open("", "MsgWindow", "width=200,height=400");
-    newWindow.document.write("<p>This window's name is: " + x + "</p>");
+    // window
+    //   .open("", "MsgWindow", "width=200,height=400")
+    var randomnumber = Math.floor(Math.random() * 100 + 1);
+    window
+      .open(
+        "",
+        "_blank",
+        "PopUp",
+        randomnumber,
+        "scrollbars=1,menubar=0,resizable=1,width=850,height=500"
+      )
+      .document.write("<p>This window's name is: " + x + "</p>");
   };
 
   render() {
