@@ -7,7 +7,6 @@ import "./Emails.scss";
 import moment from "moment";
 import data from "../../data/email-archives.json";
 import Clip from "../../Assets/icon_clip.svg";
-import dateRange from "../../Assets/icon_calender.svg";
 import MagGlass from "../../Assets/icon_search.svg";
 import Up from "../../Assets/icon_arrow01.svg";
 import Right from "../../Assets/icon_arrow02.svg";
@@ -29,7 +28,6 @@ class Emails extends Component {
       date: false
     };
   }
-  componentDidMount() {}
 
   focusFrom = () => {
     this.setState({
@@ -63,8 +61,6 @@ class Emails extends Component {
       date: true
     });
   };
-
-  emailBodyWindow = () => {};
 
   sortByRecipient = () => {
     this.setState({
