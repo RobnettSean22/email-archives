@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { DateRangePicker } from "react-dates";
+import SingleEmail from "../SingleEmail/SingleEmail";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./DatePicker.scss";
@@ -19,6 +20,7 @@ class Emails extends Component {
     this.state = {
       archives: data.emails,
       search: "",
+      single: false,
       calendarSearch: true,
       startDate: moment().startOf("year"),
       endDate: moment().endOf("month"),
@@ -96,7 +98,13 @@ class Emails extends Component {
     });
   };
 
-  emailBody = (from, to, subject, body) => {
+  toSingleEmail = index => {
+    this.setState({
+      single: true
+    });
+  };
+
+  emailBody = (to, subject, body) => {
     var randomnumber = Math.floor(Math.random() * 100 + 1);
     window
       .open(
@@ -115,8 +123,7 @@ class Emails extends Component {
   render() {
     const {
       archives,
-      search,
-      calendarSearch,
+      single,
       startDate,
       endDate,
       from,
@@ -142,13 +149,14 @@ class Emails extends Component {
           <div
             className='mail-list'
             key={i}
-            onClick={e =>
-              this.emailBody(
-                emails.recipient,
-                emails.sender,
-                emails.subject,
-                emails.info
-              )
+            onClick={
+              e => this.toSingleEmail(emails.recipient)
+              // this.emailBody(
+              //   emails.recipient,
+              //   emails.sender,
+              //   emails.subject,
+              //   emails.info
+              // )
             }
           >
             <div className='sender'>
@@ -179,9 +187,7 @@ class Emails extends Component {
                 {emails.date}
               </h3>
             </div>
-
             <img className='mail-icon' src={Mail} alt='' />
-
             <div className='mobile-sender'>
               <div className='mobilesender'>
                 <h3>{emails.sender}</h3>
@@ -224,33 +230,22 @@ class Emails extends Component {
     return (
       <div id='archive-container'>
         <div id='search'>
-          {calendarSearch === true ? (
-            <div className='filter-date'>
-              <DateRangePicker
-                startDate={startDate}
-                endDate={endDate}
-                onDatesChange={({ startDate, endDate }) =>
-                  this.setState({ startDate, endDate })
-                }
-                focusedInput={this.state.focusedInput}
-                onFocusChange={focusedInput => this.setState({ focusedInput })}
-                numberOfMonths={1}
-                isOutsideRange={() => false}
-              />
-            </div>
-          ) : (
-            <input
-              className='search-input'
-              value={search}
-              onChange={e => this.setState({ search: e.target.value })}
+          <div className='filter-date'>
+            <DateRangePicker
+              startDate={startDate}
+              endDate={endDate}
+              onDatesChange={({ startDate, endDate }) =>
+                this.setState({ startDate, endDate })
+              }
+              focusedInput={this.state.focusedInput}
+              onFocusChange={focusedInput => this.setState({ focusedInput })}
+              numberOfMonths={1}
+              isOutsideRange={() => false}
             />
-          )}
+          </div>
 
-          <div
-            onClick={this.searchFilter}
-            className={calendarSearch === true ? "cal" : "hidden"}
-          >
-            <img onClick={this.searchFilter} src={MagGlass} alt='' />
+          <div>
+            <img src={MagGlass} alt='' />
           </div>
         </div>
         <div id='title-count'>
@@ -296,6 +291,7 @@ class Emails extends Component {
               </div>
             </div>
           </div>
+          <SingleEmail mail={archives} />
           <div id='mail-content'>{filterEmails}</div>
         </div>
       </div>

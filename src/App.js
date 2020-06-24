@@ -1,17 +1,14 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 import Emails from "./Component/Emails/Emails";
-import EmailWindow from "./Component/EmailWindow";
-import NewWindow from "react-new-window";
+import SingleEmail from "./Component/SingleEmail/SingleEmail";
 class App extends Component {
   render() {
     return (
       <div>
         <Switch>
           <Route exact path='/' component={Emails} />
-          <NewWindow>
-            <Route excat path={"/selected/"} component={EmailWindow} />
-          </NewWindow>
+          <Route excat path={"/emails/:index"} component={SingleEmail} />
         </Switch>
       </div>
     );
