@@ -98,15 +98,14 @@ class Emails extends Component {
 
   emailBody = (from, subject, body) => {
     // window
-    //   .open("", "MsgWindow", "width=200,height=400")
+    //   .open("", "MsgWindow", "")
     var randomnumber = Math.floor(Math.random() * 100 + 1);
     window
       .open(
         "",
         "_blank",
-        "PopUp",
-        randomnumber,
-        "scrollbars=1,menubar=0,resizable=1,width=450,height=200"
+        "scrollbars=1,menubar=0,resizable=1,width=550,height=400",
+        randomnumber
       )
       .document.write(
         "<h1> From: " + from + "</h1>",
