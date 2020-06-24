@@ -96,19 +96,17 @@ class Emails extends Component {
     });
   };
 
-  emailBody = (from, subject, body) => {
-    // window
-    //   .open("", "MsgWindow", "")
+  emailBody = (from, to, subject, body) => {
     var randomnumber = Math.floor(Math.random() * 100 + 1);
     window
       .open(
         "",
         "_blank",
-        "scrollbars=1,menubar=0,resizable=1,width=550,height=400",
+        "scrollbars=1,menubar=0,resizable=1,width=550,height=400,left=1000, top=1000",
         randomnumber
       )
       .document.write(
-        "<h1> From: " + from + "</h1>",
+        "<h1> Recipient: " + to + "</h1>",
         "<h2> Subject" + subject + "</h2>",
         "<h3>" + body + "</h3>"
       );
@@ -145,7 +143,12 @@ class Emails extends Component {
             className='mail-list'
             key={i}
             onClick={e =>
-              this.emailBody(emails.sender, emails.subject, emails.info)
+              this.emailBody(
+                emails.recipient,
+                emails.sender,
+                emails.subject,
+                emails.info
+              )
             }
           >
             <div className='sender'>
