@@ -96,7 +96,7 @@ class Emails extends Component {
     });
   };
 
-  emailBody = (y, x) => {
+  emailBody = (from, subject, body) => {
     // window
     //   .open("", "MsgWindow", "width=200,height=400")
     var randomnumber = Math.floor(Math.random() * 100 + 1);
@@ -106,11 +106,12 @@ class Emails extends Component {
         "_blank",
         "PopUp",
         randomnumber,
-        "scrollbars=1,menubar=0,resizable=1,width=850,height=500"
+        "scrollbars=1,menubar=0,resizable=1,width=450,height=200"
       )
       .document.write(
-        "<h1>" + y + "</h1>",
-        "<p>This window's name is:" + x + "</p>"
+        "<h1> From: " + from + "</h1>",
+        "<h2> Subject" + subject + "</h2>",
+        "<h3>" + body + "</h3>"
       );
   };
 
@@ -144,7 +145,9 @@ class Emails extends Component {
           <div
             className='mail-list'
             key={i}
-            onClick={e => this.emailBody(emails.subject, emails.info)}
+            onClick={e =>
+              this.emailBody(emails.sender, emails.subject, emails.info)
+            }
           >
             <div className='sender'>
               <h3 className={from === true ? "bolded" : "reg"}>{toFit}</h3>
