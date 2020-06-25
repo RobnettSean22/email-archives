@@ -11,9 +11,9 @@ const SingleEmail = props => {
       <button
         onClick={e =>
           props.emailWindow(
-            props.mail.recipient,
-            props.mail.subject,
-            props.mail.info
+            props.mail[toggleIndex].recipient,
+            props.mail[toggleIndex].subject,
+            props.mail[toggleIndex].info
           )
         }
       ></button>
