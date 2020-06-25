@@ -1,5 +1,6 @@
 import React from "react";
 import "./SingleEmail.scss";
+import Left from "../../Assets/icon_arrow01.svg";
 
 const SingleEmail = props => {
   let toggleIndex = props.specIndex;
@@ -9,8 +10,13 @@ const SingleEmail = props => {
     <div id='spec-email'>
       <div id='controls'>
         <div id='toggle-controls'>
-          <button onClick={e => props.forward()}></button>
-          <button onClick={e => props.back()}></button>
+          <img src={Left} alt='' className='left' onClick={e => props.back()} />
+          <img
+            src={Left}
+            alt=''
+            className='right'
+            onClick={e => props.forward()}
+          />
         </div>
         <div id='new-window'>
           <button
@@ -25,13 +31,13 @@ const SingleEmail = props => {
         </div>
       </div>
       <div id='contact'>
-        <h2>
-          {props.mail[toggleIndex].sender} to{" "}
+        <h3>
+          {props.mail[toggleIndex].sender} <span>to {""} </span>
           {props.mail[toggleIndex].recipient}
-        </h2>
+        </h3>
       </div>
       <div id='about'>
-        <h3>{props.mail[toggleIndex].subject}</h3>
+        <h4>{props.mail[toggleIndex].subject}</h4>
       </div>
       <div id='content'>
         <p>{props.mail[toggleIndex].info}</p>
