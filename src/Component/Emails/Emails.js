@@ -310,6 +310,7 @@ class Emails extends Component {
               specIndex={emailIndex}
               back={this.toggleBack}
               forward={this.toggleForward}
+              emailWindow={this.emailBody}
             />
           )}
         </div>

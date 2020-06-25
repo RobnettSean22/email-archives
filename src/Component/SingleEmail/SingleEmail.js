@@ -8,6 +8,15 @@ const SingleEmail = props => {
     <div id='spec-email'>
       <button onClick={e => props.forward()}></button>
       <button onClick={e => props.back()}></button>
+      <button
+        onClick={e =>
+          props.emailWindow(
+            props.mail.recipient,
+            props.mail.subject,
+            props.mail.info
+          )
+        }
+      ></button>
       {props.mail[toggleIndex].info}
     </div>
   );
