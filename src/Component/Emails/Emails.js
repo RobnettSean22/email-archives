@@ -30,6 +30,7 @@ class Emails extends Component {
       subject: false,
       date: false
     };
+    this.toggleForward = this.toggleForward.bind(this);
   }
 
   focusFrom = () => {
@@ -102,7 +103,16 @@ class Emails extends Component {
   toSingleEmail = index => {
     this.setState({ single: false, emailIndex: index });
   };
-
+  toggleForward = () => {
+    this.setState({
+      emailIndex: this.state.emailIndex + 1
+    });
+  };
+  toggleBack = () => {
+    this.setState({
+      emailIndex: this.state.emailIndex - 1
+    });
+  };
   emailBody = (to, subject, body) => {
     var randomnumber = Math.floor(Math.random() * 100 + 1);
     window
@@ -253,7 +263,7 @@ class Emails extends Component {
           <h2>Results: {filterEmails.length}mail(s)</h2>
         </div>
         <div id='email'>
-          <div id='mail-order'>
+          <div id={single ? "mail-order" : "non-exgsistant"}>
             <div id='from'>
               <h2 onClick={this.focusFrom}>From</h2>
               <div>
@@ -295,7 +305,12 @@ class Emails extends Component {
           {single ? (
             <div id='mail-content'>{filterEmails}</div>
           ) : (
-            <SingleEmail mail={archives} specIndex={emailIndex} />
+            <SingleEmail
+              mail={archives}
+              specIndex={emailIndex}
+              back={this.toggleBack}
+              forward={this.toggleForward}
+            />
           )}
         </div>
       </div>

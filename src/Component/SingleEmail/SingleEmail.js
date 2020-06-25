@@ -4,7 +4,13 @@ const SingleEmail = props => {
   let toggleIndex = props.specIndex;
 
   console.log(props.mail);
-  return <div id='spec-email'>{props.mail[toggleIndex].info}</div>;
+  return (
+    <div id='spec-email'>
+      <button onClick={e => props.forward()}></button>
+      <button onClick={e => props.back()}></button>
+      {props.mail[toggleIndex].info}
+    </div>
+  );
 };
 
 export default SingleEmail;
