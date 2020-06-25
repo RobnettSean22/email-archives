@@ -21,6 +21,7 @@ class Emails extends Component {
       archives: data.emails,
       search: "",
       single: true,
+      emailIndex: null,
       calendarSearch: true,
       startDate: moment().startOf("year"),
       endDate: moment().endOf("month"),
@@ -99,8 +100,7 @@ class Emails extends Component {
   };
 
   toSingleEmail = index => {
-    this.setState({ single: true });
-    this.props.history.push(`/selects/${index}`);
+    this.setState({ single: false, emailIndex: index });
   };
 
   emailBody = (to, subject, body) => {
@@ -122,6 +122,7 @@ class Emails extends Component {
   render() {
     const {
       archives,
+      emailIndex,
       single,
       startDate,
       endDate,
@@ -130,6 +131,7 @@ class Emails extends Component {
       subject,
       date
     } = this.state;
+    console.log(archives);
 
     const filterEmails = archives
       .filter(mail => {
@@ -293,7 +295,7 @@ class Emails extends Component {
           {single ? (
             <div id='mail-content'>{filterEmails}</div>
           ) : (
-            <SingleEmail mail={archives} />
+            <SingleEmail mail={archives} specIndex={emailIndex} />
           )}
         </div>
       </div>
