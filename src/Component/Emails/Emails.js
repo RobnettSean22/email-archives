@@ -20,7 +20,7 @@ class Emails extends Component {
     this.state = {
       archives: data.emails,
       search: "",
-      single: false,
+      single: true,
       calendarSearch: true,
       startDate: moment().startOf("year"),
       endDate: moment().endOf("month"),
@@ -99,9 +99,8 @@ class Emails extends Component {
   };
 
   toSingleEmail = index => {
-    this.setState({
-      single: true
-    });
+    this.setState({ single: true });
+    this.props.history.push(`/selects/${index}`);
   };
 
   emailBody = (to, subject, body) => {
@@ -150,7 +149,7 @@ class Emails extends Component {
             className='mail-list'
             key={i}
             onClick={
-              e => this.toSingleEmail(emails.recipient)
+              e => this.toSingleEmail(i)
               // this.emailBody(
               //   emails.recipient,
               //   emails.sender,
@@ -291,8 +290,11 @@ class Emails extends Component {
               </div>
             </div>
           </div>
-          <SingleEmail mail={archives} />
-          <div id='mail-content'>{filterEmails}</div>
+          {single ? (
+            <div id='mail-content'>{filterEmails}</div>
+          ) : (
+            <SingleEmail mail={archives} />
+          )}
         </div>
       </div>
     );

@@ -1,25 +1,21 @@
-import React, { Component } from "react";
-import data from "../../data/email-archives.json";
-class EmailWindow extends Component {
-  constructor(props) {
-    super(props);
+import React from "react";
 
-    this.state = {
-      SpecEmail: data.emails
-    };
-  }
-  componentDidMount() {}
+const SingleEmail = props => {
+  let toggleIndex = props.params.match;
+  const toggleForward = () => {
+    return toggleIndex + 1;
+  };
+  const toggleBack = () => {
+    return toggleIndex - 1;
+  };
 
-  render() {
-    return (
-      <div>
-        {this.props.mail.sender}
-        {this.props.mail.recipient}
-        {this.props.mail.info}
-        {this.props.mail.subject}
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      {" "}
+      <button onClick={e => toggleForward}></button>
+      <button onClick={e => toggleBack}></button>
+    </div>
+  );
+};
 
-export default EmailWindow;
+export default SingleEmail;
