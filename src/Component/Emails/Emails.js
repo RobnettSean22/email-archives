@@ -271,7 +271,7 @@ class Emails extends Component {
                     }
                   >
                     {" "}
-                    <h3>{emails.date}</h3>
+                    <h3>{dateDisplay}</h3>
                     <div>
                       <img src={Right} alt='' />
                     </div>
