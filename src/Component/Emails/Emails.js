@@ -32,7 +32,9 @@ class Emails extends Component {
     };
     this.toggleForward = this.toggleForward.bind(this);
   }
-
+  componentDidMount() {
+    this.sortByDate();
+  }
   focusFrom = () => {
     this.setState({
       from: true,
@@ -96,6 +98,13 @@ class Emails extends Component {
       archives: this.state.archives.sort((a, b) => {
         const abc = this.state.from ? -1 : 1;
         return abc * b.subject.localeCompare(a.subject.toLowerCase());
+      })
+    });
+  };
+  sortByDate = () => {
+    this.setState({
+      archives: this.state.archives.sort((a, b) => {
+        return b.date.localeCompare(a.date);
       })
     });
   };
