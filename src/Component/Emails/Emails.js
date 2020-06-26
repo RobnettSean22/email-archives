@@ -133,6 +133,7 @@ class Emails extends Component {
     const {
       archives,
       emailIndex,
+      search,
       single,
       startDate,
       endDate,
@@ -147,7 +148,11 @@ class Emails extends Component {
       .filter(mail => {
         const formatDate = new Date(mail.date);
 
-        return formatDate >= startDate._d && formatDate <= endDate._d;
+        if (startDate && endDate !== null) {
+          return formatDate >= startDate._d && formatDate <= endDate._d;
+        } else if (startDate && endDate === null) {
+          return mail.date.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+        }
       })
 
       .map((emails, i) => {
@@ -160,15 +165,7 @@ class Emails extends Component {
           <div
             className='mail-list'
             key={i}
-            onClick={
-              e => this.toSingleEmail(i)
-              // this.emailBody(
-              //   emails.recipient,
-              //   emails.sender,
-              //   emails.subject,
-              //   emails.info
-              // )
-            }
+            onClick={e => this.toSingleEmail(i)}
           >
             <div className='sender'>
               <h3 className={from === true ? "bolded" : "reg"}>{toFit}</h3>
