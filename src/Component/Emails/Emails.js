@@ -103,15 +103,27 @@ class Emails extends Component {
   toSingleEmail = index => {
     this.setState({ single: false, emailIndex: index });
   };
-  toggleForward = () => {
-    this.setState({
-      emailIndex: this.state.emailIndex + 1
-    });
+  toggleForward = length => {
+    if (this.state.emailIndex > length) {
+      this.setState({
+        emailIndex: 0
+      });
+    } else {
+      this.setState({
+        emailIndex: this.state.emailIndex + 1
+      });
+    }
   };
-  toggleBack = () => {
-    this.setState({
-      emailIndex: this.state.emailIndex - 1
-    });
+  toggleBack = length => {
+    if (this.state.emailIndex < 0) {
+      this.setState({
+        emailIndex: length
+      });
+    } else {
+      this.setState({
+        emailIndex: this.state.emailIndex + 1
+      });
+    }
   };
   emailBody = (to, subject, body) => {
     var randomnumber = Math.floor(Math.random() * 100 + 1);
@@ -308,6 +320,7 @@ class Emails extends Component {
               back={this.toggleBack}
               forward={this.toggleForward}
               emailWindow={this.emailBody}
+              toggleEnd={filterEmails.length}
             />
           )}
         </div>

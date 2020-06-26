@@ -5,18 +5,24 @@ import Arrows from "../../Assets/arrows_rotated.svg";
 
 const SingleEmail = props => {
   let toggleIndex = props.specIndex;
+  let toggleCycle = props.toggleEnd - 2;
 
   console.log(props.mail);
   return (
     <div id='spec-email'>
       <div id='controls'>
         <div id='toggle-controls'>
-          <img src={Left} alt='' className='left' onClick={e => props.back()} />
+          <img
+            src={Left}
+            alt=''
+            className='left'
+            onClick={e => props.back(toggleCycle)}
+          />
           <img
             src={Left}
             alt=''
             className='right'
-            onClick={e => props.forward()}
+            onClick={e => props.forward(toggleCycle)}
           />
         </div>
         <div id='new-window'>
