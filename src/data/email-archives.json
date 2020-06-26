@@ -79,6 +79,14 @@
       "info": "mind Lorem ipsum dolor sit amet, eligendi delicatissimi cum cu. Sed viris dolorum elaboraret ne, pro ne nihil quando semper. Sumo errem civibus vix ei. Ius affert antiopam dissentiunt ex, commodo repudiare eu mel. Eos nobis equidem at, mel verear salutandi dissentias in.",
       "attachment": false,
       "date": "2019/12/31"
+    },
+    {
+      "sender": "Sean-R-Francisc@example.com",
+      "recipient": "zzz@example.com",
+      "subject": "[info:888]ABC EQUIPMENT COMPANY",
+      "info": "soul Lorem ipsum dolor sit amet, eligendi delicatissimi cum cu. Sed viris dolorum elaboraret ne, pro ne nihil quando semper. Sumo errem civibus vix ei. Ius affert antiopam dissentiunt ex, commodo repudiare eu mel. Eos nobis equidem at, mel verear salutandi dissentias in.",
+      "attachment": false,
+      "date": "2020/06/27"
     }
   ]
 }

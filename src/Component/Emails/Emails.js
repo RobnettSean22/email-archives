@@ -140,7 +140,25 @@ class Emails extends Component {
         "<h3>" + body + "</h3>"
       );
   };
+  results = () => {
+    this.setState({
+      single: true
+    });
+  };
 
+  msToTime = duration => {
+    let ms = duration.getTime();
+    var milliseconds = parseInt((ms % 1000) / 100),
+      seconds = parseInt((ms / 1000) % 60),
+      minutes = parseInt((ms / (1000 * 60)) % 60),
+      hours = parseInt((ms / (1000 * 60 * 60)) % 24);
+
+    hours = hours < 10 ? "0" + hours : hours;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    return hours + ":" + minutes;
+  };
   render() {
     const {
       archives,
@@ -159,7 +177,7 @@ class Emails extends Component {
     const filterEmails = archives
       .filter(mail => {
         const formatDate = new Date(mail.date);
-
+        console.log(formatDate.toDateString().slice(4, 11));
         if (startDate && endDate !== null) {
           return formatDate >= startDate._d && formatDate <= endDate._d;
         } else if (startDate && endDate === null) {
@@ -173,6 +191,23 @@ class Emails extends Component {
           emails.sender.length > 15
             ? emails.sender.replace(getIndex, "...")
             : emails.sender;
+
+        const stringDate = new Date(emails.date);
+        const dateDisplay =
+          stringDate.toDateString() ===
+          moment()
+            .startOf("day")
+            ._d.toDateString()
+            ? this.msToTime(stringDate)
+            : stringDate.getFullYear() !== +moment().format("YYYY")
+            ? emails.date
+            : stringDate.toDateString().slice(4, 11);
+        console.log(
+          stringDate.toDateString().slice(4, 11),
+          moment()
+            .startOf("day")
+            ._d.toDateString()
+        );
         return (
           <div
             className='mail-list'
@@ -204,7 +239,7 @@ class Emails extends Component {
             >
               {" "}
               <h3 className={date === true ? "bolded" : "reg"}>
-                {emails.date}
+                {dateDisplay}
               </h3>
             </div>
             <img className='mail-icon' src={Mail} alt='' />
@@ -264,12 +299,17 @@ class Emails extends Component {
             />
           </div>
 
-          <div>
+          <div className='glass'>
             <img src={MagGlass} alt='' />
           </div>
         </div>
         <div id='title-count'>
-          <h2>Results: {filterEmails.length}mail(s)</h2>
+          <h2
+            className={single ? "" : "clickable"}
+            onClick={single ? null : this.results}
+          >
+            Results: {filterEmails.length}mail(s)
+          </h2>
         </div>
         <div id='email'>
           <div id={single ? "mail-order" : "non-exgsistant"}>

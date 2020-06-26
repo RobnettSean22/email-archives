@@ -68,6 +68,12 @@
       font-size: 19px;
       color: rgb(219, 219, 219);
     }
+    .clickable {
+      &:hover {
+        cursor: pointer;
+        color: rgb(34, 31, 31);
+      }
+    }
   }
   #email {
     width: 100%;
