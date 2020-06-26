@@ -104,7 +104,7 @@ class Emails extends Component {
     this.setState({ single: false, emailIndex: index });
   };
   toggleForward = length => {
-    if (this.state.emailIndex > length) {
+    if (this.state.emailIndex === length - 1) {
       this.setState({
         emailIndex: 0
       });
@@ -115,13 +115,13 @@ class Emails extends Component {
     }
   };
   toggleBack = length => {
-    if (this.state.emailIndex < 0) {
+    if (this.state.emailIndex === 0) {
       this.setState({
-        emailIndex: length
+        emailIndex: length - 1
       });
     } else {
       this.setState({
-        emailIndex: this.state.emailIndex + 1
+        emailIndex: this.state.emailIndex - 1
       });
     }
   };

@@ -5,9 +5,9 @@ import Arrows from "../../Assets/arrows_rotated.svg";
 
 const SingleEmail = props => {
   let toggleIndex = props.specIndex;
-  let toggleCycle = props.toggleEnd - 2;
+  let toggleCycle = props.toggleEnd;
 
-  console.log(props.mail);
+  console.log(toggleCycle);
   return (
     <div id='spec-email'>
       <div id='controls'>
