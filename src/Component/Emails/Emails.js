@@ -33,14 +33,18 @@ class Emails extends Component {
     this.toggleForward = this.toggleForward.bind(this);
   }
   componentDidMount() {
-    this.sortByDate();
+    this.focusDate();
   }
   focusFrom = () => {
     this.setState({
       from: true,
       to: false,
       subject: false,
-      date: false
+      date: false,
+      archives: this.state.archives.sort((a, b) => {
+        const abc = this.state.from ? -1 : 1;
+        return abc * b.recipient.localeCompare(a.recipient.toLowerCase());
+      })
     });
   };
   focusTo = () => {
@@ -48,7 +52,11 @@ class Emails extends Component {
       from: false,
       to: true,
       subject: false,
-      date: false
+      date: false,
+      archives: this.state.archives.sort((a, b) => {
+        const abc = this.state.from ? -1 : 1;
+        return abc * b.sender.localeCompare(a.sender.toLowerCase());
+      })
     });
   };
   focusSubject = () => {
@@ -56,7 +64,11 @@ class Emails extends Component {
       from: false,
       to: false,
       subject: true,
-      date: false
+      date: false,
+      archives: this.state.archives.sort((a, b) => {
+        const abc = this.state.from ? -1 : 1;
+        return abc * b.subject.localeCompare(a.subject.toLowerCase());
+      })
     });
   };
   focusDate = () => {
@@ -64,45 +76,7 @@ class Emails extends Component {
       from: false,
       to: false,
       subject: false,
-      date: true
-    });
-  };
-
-  sortByRecipient = () => {
-    this.setState({
-      archives: this.state.archives.sort((a, b) => {
-        const abc = this.state.from ? -1 : 1;
-        return abc * b.recipient.localeCompare(a.recipient.toLowerCase());
-      })
-    });
-  };
-  sortByRecipientReverse = () => {
-    this.setState({
-      archives: this.state.archives.sort((a, b) => {
-        const abc = this.state.from ? -1 : 1;
-        return abc * a.recipient.localeCompare(b.recipient.toLowerCase());
-      })
-    });
-  };
-
-  sortBySender = () => {
-    this.setState({
-      archives: this.state.archives.sort((a, b) => {
-        const abc = this.state.from ? -1 : 1;
-        return abc * b.sender.localeCompare(a.sender.toLowerCase());
-      })
-    });
-  };
-  sortBySubject = () => {
-    this.setState({
-      archives: this.state.archives.sort((a, b) => {
-        const abc = this.state.from ? -1 : 1;
-        return abc * b.subject.localeCompare(a.subject.toLowerCase());
-      })
-    });
-  };
-  sortByDate = () => {
-    this.setState({
+      date: true,
       archives: this.state.archives.sort((a, b) => {
         return b.date.localeCompare(a.date);
       })
@@ -326,7 +300,6 @@ class Emails extends Component {
               <h2 onClick={this.focusFrom}>From</h2>
               <div>
                 <img
-                  onClick={this.sortByRecipient}
                   className={from === true ? "show-arrow" : "hide-arrow"}
                   src={Up}
                   alt=''
@@ -337,7 +310,6 @@ class Emails extends Component {
               <h2 onClick={this.focusTo}>To</h2>
               <div>
                 <img
-                  onClick={this.sortBySender}
                   className={to === true ? "show-arrow" : "hide-arrow"}
                   src={Up}
                   alt=''
@@ -347,12 +319,23 @@ class Emails extends Component {
             <div id='about'>
               {" "}
               <h2 onClick={this.focusSubject}>Subject</h2>
+              <div>
+                <img
+                  className={subject === true ? "show-arrow" : "hide-arrow"}
+                  src={Up}
+                  alt=''
+                />
+              </div>
             </div>
             <div id='when'>
               {" "}
               <h2 onClick={this.focusDate}>Date</h2>
-              <div className={date === true ? "show-arrow" : "hide-arrow"}>
-                <img src={Up} alt='' />
+              <div>
+                <img
+                  className={date === true ? "show-arrow" : "hide-arrow"}
+                  src={Up}
+                  alt=''
+                />
               </div>
             </div>
           </div>
