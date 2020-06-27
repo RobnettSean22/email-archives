@@ -351,12 +351,8 @@ class Emails extends Component {
             <div id='when'>
               {" "}
               <h2 onClick={this.focusDate}>Date</h2>
-              <div>
-                <img
-                  className={date === true ? "show-arrow" : "hide-arrow"}
-                  src={Up}
-                  alt=''
-                />
+              <div className={date === true ? "show-arrow" : "hide-arrow"}>
+                <img src={Up} alt='' />
               </div>
             </div>
           </div>
