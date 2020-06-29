@@ -1,4 +1,24 @@
--efforts taken
+# Process and Challenges
+
+Layout
+modile view
+
+filter
+toggle filter
+
+sort
+items sorted
+
+attachements view
+
+single view
+
+multiple email view
+pop up
+reactrouter pop out
+date
+
+email toggle cycle
 
 -drew out divs process for form lay out for visioning
 
