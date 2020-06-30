@@ -2,6 +2,18 @@
 
 ## Layout
 
+-resarched on gmail and yahoo mail to see how the funtioned
+
+-rvised code to clean up unesscicary bits of code (multiple times)
+
+-researseach moment() and new date and get date for date display
+
+-responsive design for two screen sizes
+
+I learned alot from this task. Well to be honest I learn alot from everything I work on. There were a few things I decided to look up before I began. And although I use gmail and yahoo mail on the regular, I never payed attension to their structures and thought about how they actually function. (Normal behavior from user)
+
+Below you will find descriptions and examples explaining code bits that make up the application In here you will also find links to a some of the sites that I utilized to solve several problems and to come up with a some ideas for improvements to the code its self.
+
 to ease media query adjustments Coded the layout utilizing Flex Box and percentages for sizeing properties. Had afew issues adjustiing the React Date Picker import. Unnfortunatley I was unable to adjust the calender color to concide with the theme of the application. Im sure there is a way though but I wasnt to worried about it since works with the color cordination. (white and cream can go with all)
 modile view
 
@@ -19,13 +31,6 @@ The component for single selected email view was created for the flow of the app
 
 multiple email view
 This was definetly the trickest part of this project since I decied to go with the React framework. I tried a couple methods to get this work, like React Popout and React NewWindow later down the road they could be really use full but they didn't work they way I was hoping they would for this project. So I went with the old school method. To view multiple emails at a time I used window open to create a pure HTML window outside of the ReactDom. That way when the data is passed into it it is unchanged. I also made the used a randomization method to so when a new window is already open then it will repopulate with the newly selected email. Instead a new window will open with the information froom the specified email. The icon that initaits this feature was created using XD and the arrow icons from the file that was given.
-reactrouter pop out
+
 date
-
--resarched on gmail and yahoo mail to see how the funtioned
-
--rvised code to clean up unesscicary bits of code (multiple times)
-
--researseach moment() and new date and get date for date display
-
--responsive design for two screen sizes
+Working with how the date displayed didnt take me as much time as I thought and I learned alot of information about dealing with Dates and moment(). To display the Dates in three diferent formats I gave three differnt conditions.
