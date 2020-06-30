@@ -12,12 +12,13 @@ sort
 Like most email archives, I sorted the data by date on render. There are funtions allowing the user to sort by email, subject, and back to date.
 
 attachements view
-for the view of the attachment icons
+for the view of the attachments I set up some of the data with in the json file with a boolen. If it is true then it will display the icon If it is false the it will display nothing.
 
-single view
+single view component
+The component for single selected email view was created for the flow of the application. This component only will display the emails that have are availible in the search results.
 
 multiple email view
-pop up
+To view multiple emails at a time I used window open to create a pure HTML window outside of the ReactDom. That way when the data is passed into it it is unchanged. I also made the used a randomization method to so when a new window is already open then it will repopulate with the newly selected email. Instead a new window will open with the information froom the specified email.
 reactrouter pop out
 date
 
@@ -44,7 +45,5 @@ email toggle cycle
 -researseach moment() and new date and get date for date display
 
 -responsive design for two screen sizes
-
--played with react date pic
 
 -decided on date inital input
