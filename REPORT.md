@@ -1,15 +1,18 @@
 # Process and Challenges
 
-Layout
+## Layout
+
+to ease media query adjustments Coded the layout utilizing Flex Box and percentages for sizeing properties. Had afew issues adjustiing the React Date Picker import. Unnfortunatley I was unable to adjust the calender color to concide with the theme of the application. Im sure there is a way though but I wasnt to worried about it since works with the color cordination. (white and cream can go with all)
 modile view
 
 filter
-toggle filter
+For the filter I initialy attempted to implement two types of filters one using dates and another utilizing search by text. I did run into a few issues because I was trying to place it with in the same function. So I just stuck with the date picker. To be honest simple making another component and give the option to toggle between the two. To get the Imported Date Picker component to work properly I implemented an optional condition inorder to allow the user to type in a date with out the breaking the code.
 
 sort
-items sorted
+Like most email archives, I sorted the data by date on render. There are funtions allowing the user to sort by email, subject, and back to date.
 
 attachements view
+for the view of the attachment icons
 
 single view
 
