@@ -18,33 +18,14 @@ single view component
 The component for single selected email view was created for the flow of the application. This component only will display the emails that have are availible in the search results.
 
 multiple email view
-I tried a couple methods to get this work, like React Popout
-To view multiple emails at a time I used window open to create a pure HTML window outside of the ReactDom. That way when the data is passed into it it is unchanged. I also made the used a randomization method to so when a new window is already open then it will repopulate with the newly selected email. Instead a new window will open with the information froom the specified email.
+This was definetly the trickest part of this project since I decied to go with the React framework. I tried a couple methods to get this work, like React Popout and React NewWindow later down the road they could be really use full but they didn't work they way I was hoping they would for this project. So I went with the old school method. To view multiple emails at a time I used window open to create a pure HTML window outside of the ReactDom. That way when the data is passed into it it is unchanged. I also made the used a randomization method to so when a new window is already open then it will repopulate with the newly selected email. Instead a new window will open with the information froom the specified email. The icon that initaits this feature was created using XD and the arrow icons from the file that was given.
 reactrouter pop out
 date
 
-email toggle cycle
-
--drew out divs process for form lay out for visioning
-
--based off of the insturction whitebored possible funtions based on functionality (javascript) to give self guide line
-
--decided on component structuring because react was utiliezed(though changes were made)
-
 -resarched on gmail and yahoo mail to see how the funtioned
 
--experimented with severl methods for the email comparison section
-
 -rvised code to clean up unesscicary bits of code (multiple times)
-
--devised an icon out of the arrows that were givin in xd
-
--created toggle method for the emails that qrived in the search
-
--played with a few other ideas like filter with both search by text and by date
 
 -researseach moment() and new date and get date for date display
 
 -responsive design for two screen sizes
-
--decided on date inital input
