@@ -18,6 +18,7 @@ single view component
 The component for single selected email view was created for the flow of the application. This component only will display the emails that have are availible in the search results.
 
 multiple email view
+I tried a couple methods to get this work, like React Popout
 To view multiple emails at a time I used window open to create a pure HTML window outside of the ReactDom. That way when the data is passed into it it is unchanged. I also made the used a randomization method to so when a new window is already open then it will repopulate with the newly selected email. Instead a new window will open with the information froom the specified email.
 reactrouter pop out
 date
