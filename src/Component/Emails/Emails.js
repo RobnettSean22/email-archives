@@ -23,7 +23,7 @@ class Emails extends Component {
       single: true,
       emailIndex: null,
       calendarSearch: true,
-      startDate: moment().startOf("year"),
+      startDate: moment().startOf("month"),
       endDate: moment().endOf("month"),
       from: true,
       to: false,

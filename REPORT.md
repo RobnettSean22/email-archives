@@ -15,7 +15,7 @@ This security email archive is an application that uses React, Javascript, and [
 
 ## **Layout**
 
-To ease media query adjustments the layout uses Flex Box and percentages for sizing properties. Had a few issues adjusting the [React Date Picker](https://reactdatepicker.com/). Unfortunately I was unable to adjust the calendar color to coincide with the theme of the application. I’m sure there is a way to do so but I wasn’t to worried about it since it still flows well. Besides white and cream can go with any color.
+To ease media queries adjustments the layout uses Flex Box and percentages for sizing properties. For the media queries I only accounted for the mock up sizes located in the pdf. Had a few issues adjusting the [React Date Picker](https://reactdatepicker.com/). Unfortunately I was unable to adjust the calendar color to coincide with the theme of the application. I’m sure there is a way to do so but I wasn’t to worried about it since it still flows well. Besides white and cream can go with any color.
 
 ## **Date Display**
 
