@@ -21,8 +21,13 @@ To ease media queries adjustments the layout uses Flex Box and percentages for s
 
 Working with the date and its display didn't take as much time as I thought, using new Date and [moment()](https://momentjs.com/) I was able to smooth out the kinks. To display the Dates in three different formats I used a ternary and getFullYear(), new Date, moment().format() and moment().startDate() for the returns.
 
-> _Converting the date from the data in to standard time format and toDateString changes it in to month and day format. (Thu Jul 2). Then, if the date does not match the current date or the current year then it will display as YYYY/MM/DD.
+> _Converting the date from the data in to standard time format and toDateString changes it in to month, day, and year format. (Thu Jul 2). Then, if the date does not match the current date or the current year then it will display as YYYY/MM/DD.
 > _
+
+> _Conditions:  
+> YYYY/MM/DD = YYYY/MM/DD display(time)  
+> YYYY = YYYY display display(Month #Day)  
+> YYYY !== YYYY display(YYYY/MM/DD)_
 
 ```js
 const stringDate = new Date(emails.date);
