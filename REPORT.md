@@ -2,7 +2,7 @@
 
 ## Email Archive
 
-Below you will find descriptions and examples explaining code bits that make up the application In here you will also find links to a some of the sites that I utilized to solve several problems and to come up with a some ideas for improvements to the code its self. This security email archive uses React, Javascript, and [Date Picker](https://reactdatepicker.com/). The user can select a date range, click on any of the emails that were where sent or or received within the specified ranges. The user is able to cycle through the emails that came up with in the search and view the contents of several emails at the same time.
+This security email archive that uses React, Javascript, and [Date Picker](https://reactdatepicker.com/). The user can select a date range, click on any of the emails that were where sent or received within the specified dates. The user is also able to cycle through the emails that came up with in the search and view the contents of several emails at the same time.
 
 ## **Table of Contents**
 
@@ -21,17 +21,80 @@ To ease media query adjustments the layout uses Flex Box and percentages for siz
 
 Working with the date and its display didn't take me as much time as I thought, using new Date and [moment()](https://momentjs.com/) assisted me in making it happen. To display the Dates in three different formats I used a ternary and getFullYear(), new Date, moment().format() and moment().startDate() for the returns.
 
+_Converting the date from the data in to standard time format and toDateString changes it in to month and day. (Thu Jul 2). The if the date does not match the current date or the current year then it will display in as YYYY/MM/DD.
+_
+
+```js
+const stringDate = new Date(emails.date);
+const dateDisplay =
+  stringDate.toDateString() ===
+  moment()
+    .startOf("day")
+    ._d.toDateString()
+    ? this.msToTime(stringDate)
+    : stringDate.getFullYear() !== +moment().format("YYYY")
+    ? emails.date
+    : stringDate.toDateString().slice(4, 11);
+```
+
 ## Filter
 
 For the filter I initially attempted to implement two types of filters one using dates and another by text. I did run into a few issues because I was trying to place it with in the same function. So I just stuck with the date picker. To be honest I probably could just make another component with the separate filter and allow the user to toggle between the two. For [React Date Picker](https://reactdatepicker.com/) component to work successfully a condition is in place to allow the user to type in a date with out the breaking the code.
+
+_The else if is a place holder. This gives a another route to allow the code to wait for the changes to the start date. This to keep the format of the start date in a specific format._
+
+```js
+const filterEmails = archives.filter(mail => {
+  const formatDate = new Date(mail.date);
+  console.log(formatDate.toDateString().slice(4, 11));
+  if (startDate && endDate !== null) {
+    return formatDate >= startDate._d && formatDate <= endDate._d;
+  } else if (startDate && endDate === null) {
+    return mail.date.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+  }
+});
+```
 
 ## Sort
 
 Like most email archives, I sorted the data by date upon initial render. The user can choose to sort by email, subject, and back to date if they wish to.
 
+_**Date**_
+
+```js
+focusDate = () => {
+  this.setState({
+    from: false,
+    to: false,
+    subject: false,
+    date: true,
+    archives: this.state.archives.sort((a, b) => {
+      return b.date.localeCompare(a.date);
+    })
+  });
+};
+```
+
+_**Mail address/Subject sort. Same function just depends on witch statement in state is true.**_
+
+```js
+focusSubject = () => {
+  this.setState({
+    from: false,
+    to: false,
+    subject: true,
+    date: false,
+    archives: this.state.archives.sort((a, b) => {
+      const abc = this.state.from ? -1 : 1;
+      return abc * b.subject.localeCompare(a.subject.toLowerCase());
+    })
+  });
+};
+```
+
 ## Email Attachments
 
-For the view of the attachments icon I set up some of the data with in the json file with a boolean. If it is true, then it will displays the icon if it is false, then it will display nothing. Of course, that is just for this task, but it depends on how the actual data is set up on the back end. Definitely will try it after this is turned in for the fun of it.
+For the view of the attachments icon I set up some of the data within the json file with a boolean. If it is true, then it will displays the icon if it is false, then it will display nothing. Of course, that is just for this task, but it depends on how the actual data is set up on the back end. Definitely will try it after this is turned in for the fun of it.
 
 ## SingleEmail Component
 
@@ -39,4 +102,43 @@ The component for a selected email view was created for the flow of the applicat
 
 ## Multiple Email Bodies
 
-This was definitely the trickiest part of this project since I decided to go with the React framework. I tried a couple methods to get this work, like [React Popout](https://github.com/JakeGinnivan/react-popout) and [React NewWindow](https://github.com/rmariuzzo/react-new-window) later down the road they could be really useful but they didn't work they way I was hoping they would for this project. To view multiple emails at a time I used [window.open().write()](https://reactdatepicker.com/) to create a window housing the info passed to it in HTML outside of the ReactDom. This way the data that is passed into it is unchanged. The randomization function makes sure a new window will open and the one that is already open will not repopulate with the newly selected email's content. The icon that launches this feature was created using XD and the arrow icons from the file that was given. A user can do this as many times as they wish. Whether it be the same email or a different one, a new external window will open and populate with the contents of the email selected.
+This was definitely the trickiest part of this project since I decided to go with the React framework. I tried a couple methods to get this work, like [React Popout](https://github.com/JakeGinnivan/react-popout) and [React NewWindow](https://github.com/rmariuzzo/react-new-window) later down the road they could be really useful but they didn't work they way I was hoping they would for this project. To view multiple emails at a time I used [window.open().write()](https://reactdatepicker.com/) to create a window housing the info passed to it in HTML outside of the ReactDom.
+
+```js
+emailBody = (to, subject, body) => {
+  var randomnumber = Math.floor(Math.random() * 100 + 1);
+  window
+    .open(
+      "",
+      "_blank",
+      "scrollbars=1,menubar=0,resizable=1,width=550,height=400,left=1000, top=1000",
+      randomnumber
+    )
+    .document.write(
+      "<h1> Recipient: " + to + "</h1>",
+      "<h2> Subject" + subject + "</h2>",
+      "<h3>" + body + "</h3>"
+    );
+};
+```
+
+_**prop peramiters passed in in Single component**_
+
+```js
+<div id='new-window'>
+          <div>
+            <img
+              src={Arrows}
+              alt=''
+              onClick={e =>
+                props.emailWindow(
+                  props.mail[toggleIndex].recipient,
+                  props.mail[toggleIndex].subject,
+                  props.mail[toggleIndex].info
+                )
+              }
+            />
+          </div>
+```
+
+The data that is passed into it is unchanged and the randomization function makes sure a new window will open and the one that is already open will not repopulate with the newly selected email's content. The icon that launches this feature was created using XD and the arrow icons from the file that was given. A user can do this as many times as they wish. Whether it be the same email or a different one, a new external window will open and populate with the contents of the email selected.
