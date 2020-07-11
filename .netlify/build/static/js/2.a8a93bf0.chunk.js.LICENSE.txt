@@ -4,6 +4,17 @@ object-assign
 @license MIT
 */
 
+/*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <http://feross.org>
+ * @license  MIT
+ */
+
+/*! http://mths.be/base64 v0.1.0 by @mathias | MIT license */
+
+/*! https://mths.be/punycode v1.4.1 by @mathias */
+
 /** @license React v0.19.1
  * scheduler.production.min.js
  *

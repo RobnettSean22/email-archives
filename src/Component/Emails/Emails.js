@@ -4,8 +4,9 @@ import SingleEmail from "../SingleEmail/SingleEmail";
 
 import axios from "axios";
 import Speakeasy from "speakeasy";
-import base64 from "base-64";
-import utf8 from "utf8";
+// import base64 from "base-64";
+// import utf8 from "utf8";
+import CryptoJS from "crypto-js";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./DatePicker.scss";
@@ -46,53 +47,107 @@ class Emails extends Component {
       github_url: "https://github.com/RobnettSean22/email-archives",
       contact_email: "robnettsean22@gmail.com"
     };
-    const URL = "https://api.challenge.hennge.com/challenges/003";
+    const URL =
+      "https://cors-anywhere.herokuapp.com/https://api.challenge.hennge.com/challenges/003";
     const stringData = JSON.stringify(ReqJSON);
     const asc = "HENNGECHALLENGE003";
     const sharedSecret = ReqJSON.contact_email + asc;
-    console.log(7775, stringData);
-
-    console.log(sharedSecret);
+    var hash = CryptoJS.SHA3(sharedSecret).toString(CryptoJS.enc.Base64);
+    console.log(hash);
     var getToken = Speakeasy.totp({
-      secret: sharedSecret,
+      secret: hash,
+      step: 30,
+      epoch: 0,
       encoding: "base64",
       algorithm: "sha512",
       digits: 10
     });
     console.log(getToken);
     var tokenValidates = Speakeasy.totp.verify({
-      secret: sharedSecret,
+      secret: hash,
+      step: 30,
+      epoch: 0,
+      offscreenBuffering,
       token: getToken,
       encoding: "base64",
       algorithm: "sha512",
       digits: 10
     });
-
-    console.log("hello ", tokenValidates);
-    const authStringUTF = ReqJSON.contact_email + ":" + getToken;
-    console.log(authStringUTF);
-
-    const bytes = utf8.encode(authStringUTF);
-
-    const encoded = base64.encode(bytes);
-    console.log(encoded);
-
+    console.log(tokenValidates);
+    const authString = ReqJSON.contact_email + ":" + getToken;
+    console.log(authString);
     async function sendInfo() {
-      let response = axios.post(URL, stringData, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Basic " + encoded
-        }
-      });
-      let { data } = response;
-      return data;
-
-      // .catch(err => {
-      //   console.error(err.response.data);
-      // });
+      try {
+        let res = axios.post(URL, stringData, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Basic " + authString
+          }
+        });
+        console.log(res.data);
+      } catch (err) {
+        console.error(err.response.data);
+      }
     }
     return sendInfo();
   };
+  // hennge = () => {
+  //   const ReqJSON = {
+  //     github_url: "https://github.com/RobnettSean22/email-archives",
+  //     contact_email: "robnettsean22@gmail.com"
+  //   };
+  //   const URL =
+  //     "https://cors-anywhere.herokuapp.com/https://api.challenge.hennge.com/challenges/003";
+  //   const stringData = JSON.stringify(ReqJSON);
+  //   const asc = "HENNGECHALLENGE003";
+  //   const sharedSecret = ReqJSON.contact_email + asc;
+  //   console.log(7775, stringData);
+
+  //   console.log(sharedSecret);
+  // var getToken = Speakeasy.totp({
+  //   secret: hash,
+  //   step: 30,
+  //   epoch: 0,
+  //   encoding: "base64",
+  //   algorithm: "sha512",
+  //   digits: 10
+  // });
+  //   console.log(getToken);
+  //   var tokenValidates = Speakeasy.totp.verify({
+  //     secret: sharedSecret,
+  //     step: 30,
+  //     epoch: 0,
+  //     offscreenBuffering,
+  //     token: getToken,
+  //     encoding: "base64",
+  //     algorithm: "sha512",
+  //     digits: 10
+  //   });
+
+  //   console.log("hello ", tokenValidates);
+  //   const authStringUTF = ReqJSON.contact_email + ":" + getToken;
+  //   console.log(authStringUTF);
+
+  //   const bytes = utf8.encode(authStringUTF);
+
+  //   const encoded = base64.encode(bytes);
+  //   console.log(encoded);
+
+  //   async function sendInfo() {
+  //     try {
+  //       let res = axios.post(URL, stringData, {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: "Basic " + encoded
+  //         }
+  //       });
+  //       console.log(res.data);
+  //     } catch (err) {
+  //       console.error(err.response.data);
+  //     }
+  //   }
+  //   return sendInfo();
+  // };
 
   focusFrom = () => {
     this.setState({

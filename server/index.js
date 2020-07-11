@@ -55,7 +55,7 @@ console.log(authStringUTF);
 // console.log("Token Info:", TOTP, isValid);
 
 const bytes = utf8.encode(authStringUTF);
-
+console.log(9999, authStringUTF, bytes);
 const encoded = base64.encode(bytes);
 console.log(encoded);
 // console.log(444, authStringUTF, bytes);
@@ -76,12 +76,13 @@ const createReq = async () => {
         Authorization: "Basic " + encoded
       }
     });
+    console.log(response.data);
   } catch (err) {
     console.error(err.response.data);
   }
 };
 
-// console.log("6fir6", createReq());
+createReq();
 
 app.listen(port, () => {
   console.log(`Im listening on ${port}`);
