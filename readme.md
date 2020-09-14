@@ -1,6 +1,6 @@
-# Process and Challenges
+# Email Archive
 
-## **Email Archive**
+## **Description**
 
 This security email archive is an application that uses React, Javascript, and [Date Picker](https://reactdatepicker.com/). The user can select a date range, click on any of the emails that were where sent or received within the specified dates. The user is also able to cycle through the emails that came up with in the search and view the contents of several emails at the same time.
 

@@ -55,7 +55,7 @@ const sendInfo = async () => {
     console.error(err.response.data);
   }
 };
-sendInfo();
+// sendInfo();
 
 app.listen(port, () => {
   console.log(`Im listening on ${port}`);
