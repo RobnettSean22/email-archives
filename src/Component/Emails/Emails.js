@@ -66,6 +66,20 @@ class Emails extends Component {
     });
   };
   focusTo = () => {
+    /** 
+     
+     setFrom(false)
+     setTo(true)
+     setSubject(false)
+     setDate(false)
+     setArchives(
+     archives.sort((a, b) => {
+        const abc = from ? -1 : 1;
+        return abc * b.sender.localeCompare(a.sender.toLowerCase());
+      })
+     )
+     
+     */
     this.setState({
       from: false,
       to: true,
@@ -78,6 +92,21 @@ class Emails extends Component {
     });
   };
   focusSubject = () => {
+    /** 
+     
+     setFrom(false)
+     setTo(true)
+     setSubject(false)
+     setDate(false)
+     setArchives(
+     archives.sort((a, b) => {
+        const abc = from ? -1 : 1;
+        return abc * b.subject.localeCompare(a.subject.toLowerCase());
+      })
+     )
+     
+     */
+
     this.setState({
       from: false,
       to: false,
@@ -90,6 +119,20 @@ class Emails extends Component {
     });
   };
   focusDate = () => {
+    /** 
+     
+     setFrom(false)
+     setTo(true)
+     setSubject(false)
+     setDate(false)
+     setArchives(
+     archives.sort((a, b) => {
+        return b.date.localeCompare(a.date);
+      })
+     )
+     
+     */
+
     this.setState({
       from: false,
       to: false,
@@ -102,9 +145,23 @@ class Emails extends Component {
   };
 
   toSingleEmail = (index) => {
+    /**
+    setSingle(false)
+    setEmailIndex(index)
+ */
+
     this.setState({ single: false, emailIndex: index });
   };
   toggleForward = (length) => {
+    /** if (emailIndex === length - 1) {
+        setEmailIndex(0)
+    
+       } else {
+        setEmailIndex(emailIndex + 1)
+      
+     }
+    */
+
     if (this.state.emailIndex === length - 1) {
       this.setState({
         emailIndex: 0,
@@ -116,6 +173,16 @@ class Emails extends Component {
     }
   };
   toggleBack = (length) => {
+    //   if (this.state.emailIndex === 0) {
+
+    //       emailIndex(length - 1)
+
+    //   } else {
+
+    //       emailIndex(emailIndex - 1)
+
+    //   }
+    // };
     if (this.state.emailIndex === 0) {
       this.setState({
         emailIndex: length - 1,
@@ -142,9 +209,7 @@ class Emails extends Component {
       );
   };
   results = () => {
-    this.setState({
-      single: true,
-    });
+    setSingle(true);
   };
 
   msToTime = (duration) => {
