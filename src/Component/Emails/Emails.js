@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { DateRangePicker } from "react-dates";
 import SingleEmail from "../SingleEmail/SingleEmail";
 import "react-dates/initialize";
@@ -28,13 +28,30 @@ class Emails extends Component {
       from: true,
       to: false,
       subject: false,
-      date: false
+      date: false,
     };
     this.toggleForward = this.toggleForward.bind(this);
   }
+  /** 
+   const [setArchives, archives] = useState(data.emails)
+   const [setSearch, search] = useState("")
+   const [setSingle, single] = true
+   const [setEmailIndex, emailIndex] = null
+   const [setCalendarSearch, calenderSearch] = useState(true)
+   const [setStartDate, startDate] = useState(moment()startOf('month'))
+   const [setEndDate, endDate] = useState(moment().endOf('month'))
+   const [setFrom, from] = useState(true)
+   const [setTo, to] = useState(false)
+   const [setSubject, subject] = useState(false)
+   const [setDate, date] = useState(false)
+   */
   componentDidMount() {
     this.focusDate();
   }
+
+  // useEffect(() => {
+  //   focusDate();
+  // }, []);
 
   focusFrom = () => {
     this.setState({
@@ -45,7 +62,7 @@ class Emails extends Component {
       archives: this.state.archives.sort((a, b) => {
         const abc = this.state.from ? -1 : 1;
         return abc * b.recipient.localeCompare(a.recipient.toLowerCase());
-      })
+      }),
     });
   };
   focusTo = () => {
@@ -57,7 +74,7 @@ class Emails extends Component {
       archives: this.state.archives.sort((a, b) => {
         const abc = this.state.from ? -1 : 1;
         return abc * b.sender.localeCompare(a.sender.toLowerCase());
-      })
+      }),
     });
   };
   focusSubject = () => {
@@ -69,7 +86,7 @@ class Emails extends Component {
       archives: this.state.archives.sort((a, b) => {
         const abc = this.state.from ? -1 : 1;
         return abc * b.subject.localeCompare(a.subject.toLowerCase());
-      })
+      }),
     });
   };
   focusDate = () => {
@@ -80,32 +97,32 @@ class Emails extends Component {
       date: true,
       archives: this.state.archives.sort((a, b) => {
         return b.date.localeCompare(a.date);
-      })
+      }),
     });
   };
 
-  toSingleEmail = index => {
+  toSingleEmail = (index) => {
     this.setState({ single: false, emailIndex: index });
   };
-  toggleForward = length => {
+  toggleForward = (length) => {
     if (this.state.emailIndex === length - 1) {
       this.setState({
-        emailIndex: 0
+        emailIndex: 0,
       });
     } else {
       this.setState({
-        emailIndex: this.state.emailIndex + 1
+        emailIndex: this.state.emailIndex + 1,
       });
     }
   };
-  toggleBack = length => {
+  toggleBack = (length) => {
     if (this.state.emailIndex === 0) {
       this.setState({
-        emailIndex: length - 1
+        emailIndex: length - 1,
       });
     } else {
       this.setState({
-        emailIndex: this.state.emailIndex - 1
+        emailIndex: this.state.emailIndex - 1,
       });
     }
   };
@@ -126,11 +143,11 @@ class Emails extends Component {
   };
   results = () => {
     this.setState({
-      single: true
+      single: true,
     });
   };
 
-  msToTime = duration => {
+  msToTime = (duration) => {
     let ms = duration.getTime();
     var milliseconds = parseInt((ms % 1000) / 100),
       seconds = parseInt((ms / 1000) % 60),
@@ -154,11 +171,11 @@ class Emails extends Component {
       from,
       to,
       subject,
-      date
+      date,
     } = this.state;
 
     const filterEmails = archives
-      .filter(mail => {
+      .filter((mail) => {
         const formatDate = new Date(mail.date);
 
         if (startDate && endDate !== null) {
@@ -178,24 +195,20 @@ class Emails extends Component {
         const stringDate = new Date(emails.date);
         const dateDisplay =
           stringDate.toDateString() ===
-          moment()
-            .startOf("day")
-            ._d.toDateString()
+          moment().startOf("day")._d.toDateString()
             ? this.msToTime(stringDate)
             : stringDate.getFullYear() !== +moment().format("YYYY")
             ? emails.date
             : stringDate.toDateString().slice(4, 11);
         console.log(
           stringDate.toDateString().slice(4, 11),
-          moment()
-            .startOf("day")
-            ._d.toDateString()
+          moment().startOf("day")._d.toDateString()
         );
         return (
           <div
             className='mail-list'
             key={i}
-            onClick={e => this.toSingleEmail(i)}
+            onClick={(e) => this.toSingleEmail(i)}
           >
             <div className='sender'>
               <h3 className={from === true ? "bolded" : "reg"}>{toFit}</h3>
@@ -276,7 +289,7 @@ class Emails extends Component {
                 this.setState({ startDate, endDate })
               }
               focusedInput={this.state.focusedInput}
-              onFocusChange={focusedInput => this.setState({ focusedInput })}
+              onFocusChange={(focusedInput) => this.setState({ focusedInput })}
               numberOfMonths={1}
               isOutsideRange={() => false}
             />
