@@ -209,7 +209,10 @@ class Emails extends Component {
       );
   };
   results = () => {
-    setSingle(true);
+    // setSingle(true);
+    this.setState({
+      single: true,
+    });
   };
 
   msToTime = (duration) => {
@@ -273,6 +276,7 @@ class Emails extends Component {
           <div
             className='mail-list'
             key={i}
+            /* onClick={(e) => toSingleEmail(i)} */
             onClick={(e) => this.toSingleEmail(i)}
           >
             <div className='sender'>
@@ -351,8 +355,19 @@ class Emails extends Component {
               startDate={startDate}
               endDate={endDate}
               onDatesChange={({ startDate, endDate }) =>
+                /**
+                 
+                setStartDate(startDate)
+                setEndDate(endDate) 
+               
+               */
                 this.setState({ startDate, endDate })
               }
+              // look into this check before converting. it might be apart of the packeage
+              /**
+               focusedInput={focusedInput}
+              onFocusChange={(focusedInput) => setFocusedInput(focusedInput)}
+              */
               focusedInput={this.state.focusedInput}
               onFocusChange={(focusedInput) => this.setState({ focusedInput })}
               numberOfMonths={1}
@@ -375,6 +390,7 @@ class Emails extends Component {
         <div id='email'>
           <div id={single ? "mail-order" : "non-exgsistant"}>
             <div id='from'>
+              {/* <h2 onClick={focusFrom}>From</h2> */}
               <h2 onClick={this.focusFrom}>From</h2>
               <div>
                 <img
@@ -385,6 +401,7 @@ class Emails extends Component {
               </div>
             </div>
             <div id='to'>
+              {/* <h2 onClick={focusTo}>To</h2> */}
               <h2 onClick={this.focusTo}>To</h2>
               <div>
                 <img
@@ -396,6 +413,7 @@ class Emails extends Component {
             </div>
             <div id='about'>
               {" "}
+              {/* <h2 onClick={focusSubject}>Subject</h2> */}
               <h2 onClick={this.focusSubject}>Subject</h2>
               <div>
                 <img
@@ -407,6 +425,7 @@ class Emails extends Component {
             </div>
             <div id='when'>
               {" "}
+              {/* <h2 onClick={focusDate}>Date</h2> */}
               <h2 onClick={this.focusDate}>Date</h2>
               <div>
                 <img
@@ -423,6 +442,11 @@ class Emails extends Component {
             <SingleEmail
               mail={archives}
               specIndex={emailIndex}
+              /**  
+                back={this.toggleBack}
+                forward={this.toggleForward}
+                emailWindow={this.emailBody}
+             */
               back={this.toggleBack}
               forward={this.toggleForward}
               emailWindow={this.emailBody}
