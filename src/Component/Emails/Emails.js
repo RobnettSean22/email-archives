@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 
-// import { DateRangePicker } from "react-dates";
-import Sortemails from "./SortEmails";
+import { DateRangePicker } from "react-dates";
+import SortEmails from "./SortEmails";
 import SingleEmail from "../SingleEmail/SingleEmail";
 import DateSearch from "./DateSearch";
-import "react-dates/initialize";
-import "react-dates/lib/css/_datepicker.css";
-// import "./DatePicker.scss";
+// import "react-dates/initialize";
+// import "react-dates/lib/css/_datepicker.css";
+import "./DatePicker.scss";
 import "./Emails.scss";
 import moment from "moment";
 import data from "../../data/email-archives.json";
 // import Clip from "../../Assets/icon_clip.svg";
-// import MagGlass from "../../Assets/icon_search.svg";
+import MagGlass from "../../Assets/icon_search.svg";
 import Up from "../../Assets/icon_arrow01.svg";
 // import Right from "../../Assets/icon_arrow02.svg";
 // import Mail from "../../Assets/icon_mail_sp.svg";
@@ -267,7 +267,7 @@ class Emails extends Component {
     return (
       <div id='archive-container'>
         <DateSearch beginingDate={startDate} endingDate={endDate} />
-        {/* <div id='search'>
+        <div id='search'>
           <div className='filter-date'>
             <DateRangePicker
               startDate={startDate}
@@ -285,7 +285,7 @@ class Emails extends Component {
           <div className='glass'>
             <img src={MagGlass} alt='' />
           </div>
-        </div> */}
+        </div>
         <div id='title-count'>
           <h2
             className={single ? "" : "clickable"}
@@ -341,7 +341,7 @@ class Emails extends Component {
           </div>
           {single ? (
             // <div id='mail-content'>{filterEmails}</div>
-            <Sortemails
+            <SortEmails
               emailArchives={filterEmails}
               sortStartDate={startDate}
               sortEndDate={endDate}

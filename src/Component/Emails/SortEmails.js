@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./SortEmails.scss";
 import Clip from "../../Assets/icon_clip.svg";
 import Mail from "../../Assets/icon_mail_sp.svg";
 import Right from "../../Assets/icon_arrow02.svg";

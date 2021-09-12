@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { DateRangePicker } from "react-dates";
 import MagGlass from "../../Assets/icon_search.svg";
+import "react-dates/initialize";
+import "react-dates/lib/css/_datepicker.css";
 import "./DatePicker.scss";
 import "./DateSearch.scss";
 
