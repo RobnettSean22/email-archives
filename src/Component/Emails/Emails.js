@@ -3,16 +3,17 @@ import React, { Component } from "react";
 import { DateRangePicker } from "react-dates";
 import SortEmails from "./SortEmails";
 import SingleEmail from "../SingleEmail/SingleEmail";
-import DateSearch from "./DateSearch";
-// import "react-dates/initialize";
-// import "react-dates/lib/css/_datepicker.css";
+import EmailLayout from "./EmailLayout";
+
+import "react-dates/initialize";
+import "react-dates/lib/css/_datepicker.css";
 import "./DatePicker.scss";
 import "./Emails.scss";
 import moment from "moment";
 import data from "../../data/email-archives.json";
 // import Clip from "../../Assets/icon_clip.svg";
 import MagGlass from "../../Assets/icon_search.svg";
-import Up from "../../Assets/icon_arrow01.svg";
+// import Up from "../../Assets/icon_arrow01.svg";
 // import Right from "../../Assets/icon_arrow02.svg";
 // import Mail from "../../Assets/icon_mail_sp.svg";
 
@@ -24,69 +25,69 @@ class Emails extends Component {
       archives: data.emails,
       search: "",
       single: true,
-      emailIndex: null,
+      // emailIndex: null,
       calendarSearch: true,
       startDate: moment().startOf("month"),
       endDate: moment().endOf("month"),
-      from: true,
-      to: false,
-      subject: false,
-      date: false,
+      // from: true,
+      // to: false,
+      // subject: false,
+      // date: false,
     };
     this.toggleForward = this.toggleForward.bind(this);
   }
 
-  componentDidMount() {
-    this.focusDate();
-  }
+  // componentDidMount() {
+  //   this.focusDate();
+  // }
 
-  focusFrom = () => {
-    this.setState({
-      from: true,
-      to: false,
-      subject: false,
-      date: false,
-      archives: this.state.archives.sort((a, b) => {
-        const abc = this.state.from ? -1 : 1;
-        return abc * b.recipient.localeCompare(a.recipient.toLowerCase());
-      }),
-    });
-  };
-  focusTo = () => {
-    this.setState({
-      from: false,
-      to: true,
-      subject: false,
-      date: false,
-      archives: this.state.archives.sort((a, b) => {
-        const abc = this.state.from ? -1 : 1;
-        return abc * b.sender.localeCompare(a.sender.toLowerCase());
-      }),
-    });
-  };
-  focusSubject = () => {
-    this.setState({
-      from: false,
-      to: false,
-      subject: true,
-      date: false,
-      archives: this.state.archives.sort((a, b) => {
-        const abc = this.state.from ? -1 : 1;
-        return abc * b.subject.localeCompare(a.subject.toLowerCase());
-      }),
-    });
-  };
-  focusDate = () => {
-    this.setState({
-      from: false,
-      to: false,
-      subject: false,
-      date: true,
-      archives: this.state.archives.sort((a, b) => {
-        return b.date.localeCompare(a.date);
-      }),
-    });
-  };
+  // focusFrom = () => {
+  //   this.setState({
+  //     from: true,
+  //     to: false,
+  //     subject: false,
+  //     date: false,
+  //     archives: this.state.archives.sort((a, b) => {
+  //       const abc = this.state.from ? -1 : 1;
+  //       return abc * b.recipient.localeCompare(a.recipient.toLowerCase());
+  //     }),
+  //   });
+  // };
+  // focusTo = () => {
+  //   this.setState({
+  //     from: false,
+  //     to: true,
+  //     subject: false,
+  //     date: false,
+  //     archives: this.state.archives.sort((a, b) => {
+  //       const abc = this.state.from ? -1 : 1;
+  //       return abc * b.sender.localeCompare(a.sender.toLowerCase());
+  //     }),
+  //   });
+  // };
+  // focusSubject = () => {
+  //   this.setState({
+  //     from: false,
+  //     to: false,
+  //     subject: true,
+  //     date: false,
+  //     archives: this.state.archives.sort((a, b) => {
+  //       const abc = this.state.from ? -1 : 1;
+  //       return abc * b.subject.localeCompare(a.subject.toLowerCase());
+  //     }),
+  //   });
+  // };
+  // focusDate = () => {
+  //   this.setState({
+  //     from: false,
+  //     to: false,
+  //     subject: false,
+  //     date: true,
+  //     archives: this.state.archives.sort((a, b) => {
+  //       return b.date.localeCompare(a.date);
+  //     }),
+  //   });
+  // };
 
   toSingleEmail = (index) => {
     this.setState({ single: false, emailIndex: index });
@@ -134,19 +135,19 @@ class Emails extends Component {
     });
   };
 
-  msToTime = (duration) => {
-    let ms = duration.getTime();
-    var milliseconds = parseInt((ms % 1000) / 100),
-      seconds = parseInt((ms / 1000) % 60),
-      minutes = parseInt((ms / (1000 * 60)) % 60),
-      hours = parseInt((ms / (1000 * 60 * 60)) % 24);
+  // msToTime = (duration) => {
+  //   let ms = duration.getTime();
+  //   var milliseconds = parseInt((ms % 1000) / 100),
+  //     seconds = parseInt((ms / 1000) % 60),
+  //     minutes = parseInt((ms / (1000 * 60)) % 60),
+  //     hours = parseInt((ms / (1000 * 60 * 60)) % 24);
 
-    hours = hours < 10 ? "0" + hours : hours;
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
+  //   hours = hours < 10 ? "0" + hours : hours;
+  //   minutes = minutes < 10 ? "0" + minutes : minutes;
+  //   seconds = seconds < 10 ? "0" + seconds : seconds;
 
-    return hours + ":" + minutes;
-  };
+  //   return hours + ":" + minutes;
+  // };
   render() {
     const {
       archives,
@@ -266,7 +267,6 @@ class Emails extends Component {
 
     return (
       <div id='archive-container'>
-        <DateSearch beginingDate={startDate} endingDate={endDate} />
         <div id='search'>
           <div className='filter-date'>
             <DateRangePicker
@@ -294,7 +294,16 @@ class Emails extends Component {
             Results: {filterEmails.length}mail(s)
           </h2>
         </div>
-        <div id='email'>
+        <EmailLayout
+          emailSingle={single}
+          emailNewArchives={archives}
+          passStartDate={startDate}
+          passEndDate={endDate}
+          passFilterEmails={filterEmails}
+          passSearch={search}
+        />
+        {/* <div id='email'>
+       
           <div id={single ? "mail-order" : "non-exgsistant"}>
             <div id='from'>
               <h2 onClick={this.focusFrom}>From</h2>
@@ -361,7 +370,7 @@ class Emails extends Component {
               toggleEnd={filterEmails.length}
             />
           )}
-        </div>
+        </div> */}
       </div>
     );
   }

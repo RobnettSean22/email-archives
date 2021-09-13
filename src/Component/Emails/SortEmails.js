@@ -8,6 +8,20 @@ import moment from "moment";
 const Sortemails = (props) => {
   const { emailArchives, sortFrom, sortTo, sortSubject, sortDate } = props;
 
+  const msToTime = (duration) => {
+    let ms = duration.getTime();
+    var milliseconds = parseInt((ms % 1000) / 100),
+      seconds = parseInt((ms / 1000) % 60),
+      minutes = parseInt((ms / (1000 * 60)) % 60),
+      hours = parseInt((ms / (1000 * 60 * 60)) % 24);
+
+    hours = hours < 10 ? "0" + hours : hours;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    return hours + ":" + minutes;
+  };
+
   const mapEmails = emailArchives.map((emails, i) => {
     const getIndex = emails.sender.substring(16);
     const toFit =
@@ -18,7 +32,7 @@ const Sortemails = (props) => {
     const stringDate = new Date(emails.date);
     const dateDisplay =
       stringDate.toDateString() === moment().startOf("day")._d.toDateString()
-        ? this.msToTime(stringDate)
+        ? msToTime(stringDate)
         : stringDate.getFullYear() !== +moment().format("YYYY")
         ? emails.date
         : stringDate.toDateString().slice(4, 11);

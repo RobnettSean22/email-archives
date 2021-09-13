@@ -9,16 +9,18 @@ import "./DateSearch.scss";
 class DateSearch extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      startDate: this.props.searchStartDate,
+      endDate: this.props.searchEndDate,
+    };
   }
   render() {
-    const { beginingDate, endingDate } = this.props;
     return (
       <div id='search'>
         <div className='filter-date'>
           <DateRangePicker
-            startDate={beginingDate}
-            endDate={endingDate}
+            startDate={this.state.startDate}
+            endDate={this.state.endDate}
             onDatesChange={({ startDate, endDate }) =>
               this.setState({ startDate, endDate })
             }
