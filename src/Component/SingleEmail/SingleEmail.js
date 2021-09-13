@@ -4,25 +4,23 @@ import Left from "../../Assets/icon_arrow01.svg";
 import Arrows from "../../Assets/arrows_rotated.svg";
 
 const SingleEmail = (props) => {
-  let specifiedIndex = props.specIndex;
-  let toggle = props.endOfLength;
+  const [specifiedIndex, setSpecifiedIndex] = useState(props.specIndex);
+  const [toggle, setToggle] = useState(props.endOfLength);
 
-  // const handleForward = (length) => {
-  //   if (specifiedIndex === length - 1) {
-  //     return (specifiedIndex = 0);
-  //   } else {
-  //     return (specifiedIndex = specifiedIndex + 1);
-  //   }
-  // };
-  // const handleBack = (length) => {
-  //   if (specifiedIndex === 0) {
-  //     return length - 1;
-  //   } else {
-  //     return (specifiedIndex = specifiedIndex - 1);
-  //   }
-  // };
-
-  // console.log(handleBack(toggle));
+  const handleForward = (length) => {
+    if (specifiedIndex === length - 1) {
+      setSpecifiedIndex(0);
+    } else {
+      setSpecifiedIndex(specifiedIndex + 1);
+    }
+  };
+  const handleBack = (length) => {
+    if (specifiedIndex === 0) {
+      specifiedIndex(length - 1);
+    } else {
+      specifiedIndex(specifiedIndex - 1);
+    }
+  };
 
   const handleEmailWindow = (to, subject, body) => {
     var randomnumber = Math.floor(Math.random() * 100 + 1);
@@ -48,13 +46,13 @@ const SingleEmail = (props) => {
             src={Left}
             alt=''
             className='left'
-            onClick={(e) => props.handleBack(toggle)}
+            onClick={(e) => handleBack(toggle)}
           />
           <img
             src={Left}
             alt=''
             className='right'
-            onClick={(e) => props.handleForward(toggle)}
+            onClick={(e) => handleForward(toggle)}
           />
         </div>
         <div id='new-window'>

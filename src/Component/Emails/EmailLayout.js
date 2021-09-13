@@ -5,13 +5,13 @@ import SingleEmail from "../SingleEmail/SingleEmail";
 import Up from "../../Assets/icon_arrow01.svg";
 
 const EmailLayout = (props) => {
-  const { setFrom, from } = useState(true);
-  const { setTo, to } = useState(false);
-  const { setSubject, subject } = useState(false);
-  const { setDate, date } = useState(false);
-  //   const { setEmailIndex, emailIndex } = useState(null);
-  const { setNewArchives, newArchives } = useState(props.emailNewArchives);
+  const [from, setFrom] = useState(true);
+  const [to, setTo] = useState(false);
+  const [subject, setSubject] = useState(false);
+  const [date, setDate] = useState(false);
 
+  const [newArchives, setNewArchives] = useState(props.emailNewArchives);
+  console.log(newArchives);
   //   componentDidMount() {
   //     this.handleDate();
   //   }
@@ -20,16 +20,11 @@ const EmailLayout = (props) => {
   }, []);
 
   const handleFrom = () => {
-    setFrom();
-    setTo();
-    setSubject();
-    setDate();
-    setNewArchives(
-      newArchives.sort((a, b) => {
-        const abc = from ? -1 : 1;
-        return abc * b.recipient.localeCompare(a.recipient.toLowerCase());
-      })
-    );
+    setFrom(true);
+    setTo(false);
+    setSubject(false);
+    setDate(false);
+    setNewArchives(props.sortFrom());
 
     // this.setState({
     //   from: true,
@@ -43,39 +38,46 @@ const EmailLayout = (props) => {
     // });
   };
   const handleTo = () => {
-    this.setState({
-      from: false,
-      to: true,
-      subject: false,
-      date: false,
-      archives: props.emailArchives.sort((a, b) => {
-        const abc = from ? -1 : 1;
-        return abc * b.sender.localeCompare(a.sender.toLowerCase());
-      }),
-    });
+    setFrom(false);
+    setTo(true);
+    setSubject(false);
+    setDate(false);
+    setNewArchives(props.sortTo());
+
+    // this.setState({
+    //   from: false,
+    //   to: true,
+    //   subject: false,
+    //   date: false,
+    //   archives: props.emailArchives.sort((a, b) => {
+    //     const abc = from ? -1 : 1;
+    //     return abc * b.sender.localeCompare(a.sender.toLowerCase());
+    //   }),
+    // });
   };
   const handleSubject = () => {
-    this.setState({
-      from: false,
-      to: false,
-      subject: true,
-      date: false,
-      archives: props.emailArchives.sort((a, b) => {
-        const abc = from ? -1 : 1;
-        return abc * b.subject.localeCompare(a.subject.toLowerCase());
-      }),
-    });
+    setFrom(false);
+    setTo(false);
+    setSubject(true);
+    setDate(false);
+    setNewArchives(props.sortSubject());
+    // this.setState({
+    //   from: false,
+    //   to: false,
+    //   subject: true,
+    //   date: false,
+    //   archives: props.emailArchives.sort((a, b) => {
+    //     const abc = from ? -1 : 1;
+    //     return abc * b.subject.localeCompare(a.subject.toLowerCase());
+    //   }),
+    // });
   };
   const handleDate = () => {
-    // setFrom(false);
-    // setTo(false);
-    // setSubject(false);
-    // setDate(true);
-    setNewArchives(
-      newArchives.sort((a, b) => {
-        return b.date.localeCompare(a.date);
-      })
-    );
+    setFrom(false);
+    setTo(false);
+    setSubject(false);
+    setDate(true);
+    setNewArchives(props.sortDate());
     // this.setState({
     //   from: false,
     //   to: false,
@@ -150,8 +152,6 @@ const EmailLayout = (props) => {
         <SingleEmail
           mail={props.passFilterEmails}
           specIndex={props.passEmailIndex}
-          handleBack={props.passToggleBack}
-          handleForward={props.passToggleForward}
           handleEmailWindow={props.passhandleEmailBody}
           endOfLength={props.passFilterEmails.length}
         />
