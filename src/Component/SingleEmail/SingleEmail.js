@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./SingleEmail.scss";
 import Left from "../../Assets/icon_arrow01.svg";
 import Arrows from "../../Assets/arrows_rotated.svg";
@@ -16,9 +16,9 @@ const SingleEmail = (props) => {
   };
   const handleBack = (length) => {
     if (specifiedIndex === 0) {
-      specifiedIndex(length - 1);
+      setSpecifiedIndex(length - 1);
     } else {
-      specifiedIndex(specifiedIndex - 1);
+      setSpecifiedIndex(specifiedIndex - 1);
     }
   };
 
@@ -37,7 +37,7 @@ const SingleEmail = (props) => {
         "<h3>" + body + "</h3>"
       );
   };
-  console.log(specifiedIndex);
+
   return (
     <div id='spec-email'>
       <div id='controls'>

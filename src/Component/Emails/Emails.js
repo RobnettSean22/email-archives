@@ -21,10 +21,6 @@ class Emails extends Component {
       calendarSearch: true,
       startDate: moment().startOf("month"),
       endDate: moment().endOf("month"),
-      // from: true,
-      // to: false,
-      // subject: false,
-      // date: false,
     };
     this.handleSortFrom = this.handleSortFrom.bind(this);
     this.handleSortTo = this.handleSortTo.bind(this);
@@ -32,16 +28,8 @@ class Emails extends Component {
     this.handleSortSubject = this.handleSortSubject.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.focusDate();
-  // }
-
   handleSortFrom = () => {
     this.setState({
-      // from: true,
-      // to: false,
-      // subject: false,
-      // date: false,
       archives: this.state.archives.sort((a, b) => {
         const abc = this.state.from ? -1 : 1;
         return abc * b.recipient.localeCompare(a.recipient.toLowerCase());
@@ -50,10 +38,6 @@ class Emails extends Component {
   };
   handleSortTo = () => {
     this.setState({
-      // from: false,
-      // to: true,
-      // subject: false,
-      // date: false,
       archives: this.state.archives.sort((a, b) => {
         const abc = this.state.from ? -1 : 1;
         return abc * b.sender.localeCompare(a.sender.toLowerCase());
@@ -62,10 +46,6 @@ class Emails extends Component {
   };
   handleSortSubject = () => {
     this.setState({
-      // from: false,
-      // to: false,
-      // subject: true,
-      // date: false,
       archives: this.state.archives.sort((a, b) => {
         const abc = this.state.from ? -1 : 1;
         return abc * b.subject.localeCompare(a.subject.toLowerCase());
@@ -74,10 +54,6 @@ class Emails extends Component {
   };
   handleSortDate = () => {
     this.setState({
-      // from: false,
-      // to: false,
-      // subject: false,
-      // date: true,
       archives: this.state.archives.sort((a, b) => {
         return b.date.localeCompare(a.date);
       }),
@@ -87,28 +63,7 @@ class Emails extends Component {
   toSingleEmail = (index) => {
     this.setState({ single: false, emailIndex: index });
   };
-  handleToggleForward = (length) => {
-    if (this.state.emailIndex === length - 1) {
-      this.setState({
-        emailIndex: 0,
-      });
-    } else {
-      this.setState({
-        emailIndex: this.state.emailIndex + 1,
-      });
-    }
-  };
-  handleToggleBack = (length) => {
-    if (this.state.emailIndex === 0) {
-      this.setState({
-        emailIndex: length - 1,
-      });
-    } else {
-      this.setState({
-        emailIndex: this.state.emailIndex - 1,
-      });
-    }
-  };
+
   emailBody = (to, subject, body) => {
     var randomnumber = Math.floor(Math.random() * 100 + 1);
     window
@@ -184,8 +139,6 @@ class Emails extends Component {
           passToSingleEmail={this.toSingleEmail}
           passEmailBody={this.handleEmailBody}
           passEmailIndex={emailIndex}
-          passToggleBack={this.handleToggleBack}
-          passToggleForward={this.handleToggleForward}
           sortFrom={this.handleSortFrom}
           sortTo={this.handleSortTo}
           sortDate={this.handleSortDate}
