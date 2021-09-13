@@ -86,7 +86,7 @@ const EmailLayout = (props) => {
     //   }),
     // });
   };
-
+  console.log(props.passFilterEmails);
   return (
     <div id='email'>
       <div id={props.emailSingle ? "mail-order" : "non-exgsistant"}>
@@ -148,12 +148,12 @@ const EmailLayout = (props) => {
         />
       ) : (
         <SingleEmail
-          mail={newArchives}
-          //   specIndex={emailIndex}
-          back={this.toggleBack}
-          forward={this.toggleForward}
-          emailWindow={this.emailBody}
-          toggleEnd={props.passFilterEmails.length}
+          mail={props.passFilterEmails}
+          specIndex={props.passEmailIndex}
+          handleBack={props.passToggleBack}
+          handleForward={props.passToggleForward}
+          handleEmailWindow={props.passhandleEmailBody}
+          endOfLength={props.passFilterEmails.length}
         />
       )}
     </div>

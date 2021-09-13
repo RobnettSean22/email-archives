@@ -25,7 +25,7 @@ class Emails extends Component {
       archives: data.emails,
       search: "",
       single: true,
-      // emailIndex: null,
+      emailIndex: null,
       calendarSearch: true,
       startDate: moment().startOf("month"),
       endDate: moment().endOf("month"),
@@ -34,7 +34,8 @@ class Emails extends Component {
       // subject: false,
       // date: false,
     };
-    this.toggleForward = this.toggleForward.bind(this);
+    this.handleToggleForward = this.handleToggleForward.bind(this);
+    this.handleToggleBack = this.handleToggleForward.bind(this);
   }
 
   // componentDidMount() {
@@ -92,7 +93,7 @@ class Emails extends Component {
   toSingleEmail = (index) => {
     this.setState({ single: false, emailIndex: index });
   };
-  toggleForward = (length) => {
+  handleToggleForward = (length) => {
     if (this.state.emailIndex === length - 1) {
       this.setState({
         emailIndex: 0,
@@ -103,7 +104,7 @@ class Emails extends Component {
       });
     }
   };
-  toggleBack = (length) => {
+  handleToggleBack = (length) => {
     if (this.state.emailIndex === 0) {
       this.setState({
         emailIndex: length - 1,
@@ -114,21 +115,21 @@ class Emails extends Component {
       });
     }
   };
-  // emailBody = (to, subject, body) => {
-  //   var randomnumber = Math.floor(Math.random() * 100 + 1);
-  //   window
-  //     .open(
-  //       "",
-  //       "_blank",
-  //       "scrollbars=1,menubar=0,resizable=1,width=550,height=400,left=1000, top=1000",
-  //       randomnumber
-  //     )
-  //     .document.write(
-  //       "<h1> Recipient: " + to + "</h1>",
-  //       "<h2> Subject" + subject + "</h2>",
-  //       "<h3>" + body + "</h3>"
-  //     );
-  // };
+  emailBody = (to, subject, body) => {
+    var randomnumber = Math.floor(Math.random() * 100 + 1);
+    window
+      .open(
+        "",
+        "_blank",
+        "scrollbars=1,menubar=0,resizable=1,width=550,height=400,left=1000, top=1000",
+        randomnumber
+      )
+      .document.write(
+        "<h1> Recipient: " + to + "</h1>",
+        "<h2> Subject" + subject + "</h2>",
+        "<h3>" + body + "</h3>"
+      );
+  };
   results = () => {
     this.setState({
       single: true,
@@ -171,6 +172,7 @@ class Emails extends Component {
         return mail.date.toLowerCase().indexOf(search.toLowerCase()) !== -1;
       }
     });
+    console.log(filterEmails);
 
     //   .map((emails, i) => {
     //     const getIndex = emails.sender.substring(16);
@@ -302,6 +304,10 @@ class Emails extends Component {
           passFilterEmails={filterEmails}
           passSearch={search}
           passToSingleEmail={this.toSingleEmail}
+          passEmailBody={this.handleEmailBody}
+          passEmailIndex={emailIndex}
+          passToggleBack={this.handleToggleBack}
+          passToggleForward={this.handleToggleForward}
         />
         {/* <div id='email'>
        

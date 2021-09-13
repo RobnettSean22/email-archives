@@ -1,13 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SingleEmail.scss";
 import Left from "../../Assets/icon_arrow01.svg";
 import Arrows from "../../Assets/arrows_rotated.svg";
 
 const SingleEmail = (props) => {
-  const { setEmailIndex, emailIndex } = useState(null);
+  let specifiedIndex = props.specIndex;
+  let toggle = props.endOfLength;
 
-  let toggleIndex = props.specIndex;
-  let toggleCycle = props.toggleEnd;
+  // const handleForward = (length) => {
+  //   if (specifiedIndex === length - 1) {
+  //     return (specifiedIndex = 0);
+  //   } else {
+  //     return (specifiedIndex = specifiedIndex + 1);
+  //   }
+  // };
+  // const handleBack = (length) => {
+  //   if (specifiedIndex === 0) {
+  //     return length - 1;
+  //   } else {
+  //     return (specifiedIndex = specifiedIndex - 1);
+  //   }
+  // };
+
+  // console.log(handleBack(toggle));
 
   const handleEmailWindow = (to, subject, body) => {
     var randomnumber = Math.floor(Math.random() * 100 + 1);
@@ -24,8 +39,7 @@ const SingleEmail = (props) => {
         "<h3>" + body + "</h3>"
       );
   };
-
-  console.log(toggleCycle);
+  console.log(specifiedIndex);
   return (
     <div id='spec-email'>
       <div id='controls'>
@@ -34,13 +48,13 @@ const SingleEmail = (props) => {
             src={Left}
             alt=''
             className='left'
-            onClick={(e) => props.back(toggleCycle)}
+            onClick={(e) => props.handleBack(toggle)}
           />
           <img
             src={Left}
             alt=''
             className='right'
-            onClick={(e) => props.forward(toggleCycle)}
+            onClick={(e) => props.handleForward(toggle)}
           />
         </div>
         <div id='new-window'>
@@ -50,9 +64,9 @@ const SingleEmail = (props) => {
               alt=''
               onClick={(e) =>
                 handleEmailWindow(
-                  props.mail[toggleIndex].recipient,
-                  props.mail[toggleIndex].subject,
-                  props.mail[toggleIndex].info
+                  props.mail[specifiedIndex].recipient,
+                  props.mail[specifiedIndex].subject,
+                  props.mail[specifiedIndex].info
                 )
               }
             />
@@ -61,15 +75,15 @@ const SingleEmail = (props) => {
       </div>
       <div id='contact'>
         <h3>
-          {props.mail[toggleIndex].sender} <span>to {""} </span>
-          {props.mail[toggleIndex].recipient}
+          {props.mail[specifiedIndex].sender} <span>to {""} </span>
+          {props.mail[specifiedIndex].recipient}
         </h3>
       </div>
       <div id='about'>
-        <h4>{props.mail[toggleIndex].subject}</h4>
+        <h4>{props.mail[specifiedIndex].subject}</h4>
       </div>
       <div id='content'>
-        <p>{props.mail[toggleIndex].info}</p>
+        <p>{props.mail[specifiedIndex].info}</p>
       </div>
     </div>
   );
