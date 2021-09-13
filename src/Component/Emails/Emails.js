@@ -114,21 +114,21 @@ class Emails extends Component {
       });
     }
   };
-  emailBody = (to, subject, body) => {
-    var randomnumber = Math.floor(Math.random() * 100 + 1);
-    window
-      .open(
-        "",
-        "_blank",
-        "scrollbars=1,menubar=0,resizable=1,width=550,height=400,left=1000, top=1000",
-        randomnumber
-      )
-      .document.write(
-        "<h1> Recipient: " + to + "</h1>",
-        "<h2> Subject" + subject + "</h2>",
-        "<h3>" + body + "</h3>"
-      );
-  };
+  // emailBody = (to, subject, body) => {
+  //   var randomnumber = Math.floor(Math.random() * 100 + 1);
+  //   window
+  //     .open(
+  //       "",
+  //       "_blank",
+  //       "scrollbars=1,menubar=0,resizable=1,width=550,height=400,left=1000, top=1000",
+  //       randomnumber
+  //     )
+  //     .document.write(
+  //       "<h1> Recipient: " + to + "</h1>",
+  //       "<h2> Subject" + subject + "</h2>",
+  //       "<h3>" + body + "</h3>"
+  //     );
+  // };
   results = () => {
     this.setState({
       single: true,
@@ -301,6 +301,7 @@ class Emails extends Component {
           passEndDate={endDate}
           passFilterEmails={filterEmails}
           passSearch={search}
+          passToSingleEmail={this.toSingleEmail}
         />
         {/* <div id='email'>
        

@@ -41,7 +41,11 @@ const Sortemails = (props) => {
       moment().startOf("day")._d.toDateString()
     );
     return (
-      <div className='mail-list' key={i} onClick={(e) => this.toSingleEmail(i)}>
+      <div
+        className='mail-list'
+        key={i}
+        onClick={(e) => props.openSingleEmail(i)}
+      >
         <div className='sender'>
           <h3 className={sortFrom === true ? "bolded" : "reg"}>{toFit}</h3>
         </div>

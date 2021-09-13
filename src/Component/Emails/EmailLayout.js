@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SortEmails from "./SortEmails";
 import SingleEmail from "../SingleEmail/SingleEmail";
-import { Component } from "react/cjs/react.production.min";
+
 import Up from "../../Assets/icon_arrow01.svg";
 
 const EmailLayout = (props) => {
@@ -9,14 +9,17 @@ const EmailLayout = (props) => {
   const { setTo, to } = useState(false);
   const { setSubject, subject } = useState(false);
   const { setDate, date } = useState(false);
-  const { setEmailIndex, emailIndex } = useState(null);
+  //   const { setEmailIndex, emailIndex } = useState(null);
   const { setNewArchives, newArchives } = useState(props.emailNewArchives);
 
   //   componentDidMount() {
-  //     this.focusDate();
+  //     this.handleDate();
   //   }
+  useEffect(() => {
+    // handleDate();
+  }, []);
 
-  const focusFrom = () => {
+  const handleFrom = () => {
     setFrom();
     setTo();
     setSubject();
@@ -39,7 +42,7 @@ const EmailLayout = (props) => {
     //   }),
     // });
   };
-  const focusTo = () => {
+  const handleTo = () => {
     this.setState({
       from: false,
       to: true,
@@ -51,7 +54,7 @@ const EmailLayout = (props) => {
       }),
     });
   };
-  const focusSubject = () => {
+  const handleSubject = () => {
     this.setState({
       from: false,
       to: false,
@@ -63,23 +66,32 @@ const EmailLayout = (props) => {
       }),
     });
   };
-  const focusDate = () => {
-    this.setState({
-      from: false,
-      to: false,
-      subject: false,
-      date: true,
-      archives: props.emailArchives.sort((a, b) => {
+  const handleDate = () => {
+    // setFrom(false);
+    // setTo(false);
+    // setSubject(false);
+    // setDate(true);
+    setNewArchives(
+      newArchives.sort((a, b) => {
         return b.date.localeCompare(a.date);
-      }),
-    });
+      })
+    );
+    // this.setState({
+    //   from: false,
+    //   to: false,
+    //   subject: false,
+    //   date: true,
+    //   archives: props.emailArchives.sort((a, b) => {
+    //     return b.date.localeCompare(a.date);
+    //   }),
+    // });
   };
 
   return (
     <div id='email'>
       <div id={props.emailSingle ? "mail-order" : "non-exgsistant"}>
         <div id='from'>
-          <h2 onClick={focusFrom}>From</h2>
+          <h2 onClick={handleFrom}>From</h2>
           <div>
             <img
               className={from === true ? "show-arrow" : "hide-arrow"}
@@ -89,7 +101,7 @@ const EmailLayout = (props) => {
           </div>
         </div>
         <div id='to'>
-          <h2 onClick={focusTo}>To</h2>
+          <h2 onClick={handleTo}>To</h2>
           <div>
             <img
               className={to === true ? "show-arrow" : "hide-arrow"}
@@ -100,7 +112,7 @@ const EmailLayout = (props) => {
         </div>
         <div id='about'>
           {" "}
-          <h2 onClick={focusSubject}>Subject</h2>
+          <h2 onClick={handleSubject}>Subject</h2>
           <div>
             <img
               className={subject === true ? "show-arrow" : "hide-arrow"}
@@ -111,7 +123,7 @@ const EmailLayout = (props) => {
         </div>
         <div id='when'>
           {" "}
-          <h2 onClick={focusDate}>Date</h2>
+          <h2 onClick={handleDate}>Date</h2>
           <div>
             <img
               className={date === true ? "show-arrow" : "hide-arrow"}
@@ -132,11 +144,12 @@ const EmailLayout = (props) => {
           sortTo={to}
           sortSubject={subject}
           sortDate={date}
+          openSingleEmail={props.passToSingleEmail}
         />
       ) : (
         <SingleEmail
           mail={newArchives}
-          specIndex={emailIndex}
+          //   specIndex={emailIndex}
           back={this.toggleBack}
           forward={this.toggleForward}
           emailWindow={this.emailBody}
