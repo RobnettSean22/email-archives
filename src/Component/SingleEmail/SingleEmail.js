@@ -1,25 +1,34 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import "./SingleEmail.scss";
 import Left from "../../Assets/icon_arrow01.svg";
 import Arrows from "../../Assets/arrows_rotated.svg";
 
 const SingleEmail = (props) => {
-  const [specifiedIndex, setSpecifiedIndex] = useState(props.specIndex);
-  const [toggle, setToggle] = useState(props.endOfLength);
+  const ACTION = { INCREMENT: "increment", DECREMENT: "decrement" };
 
-  const handleForward = (length) => {
-    if (specifiedIndex === length - 1) {
-      setSpecifiedIndex(0);
-    } else {
-      setSpecifiedIndex(specifiedIndex + 1);
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case ACTION.INCREMENT:
+        return state.state.countIndex === state.length - 1
+          ? { countIndex: 0 }
+          : { countIndex: state.state.countIndex + 1 };
+      case ACTION.DECREMENT:
+        return state.state.countIndex === 0
+          ? { countIndex: state.length - 1 }
+          : { countIndex: state.state.countIndex - 1 };
     }
   };
-  const handleBack = (length) => {
-    if (specifiedIndex === 0) {
-      setSpecifiedIndex(length - 1);
-    } else {
-      setSpecifiedIndex(specifiedIndex - 1);
-    }
+
+  const [state, dispatch] = useReducer(reducer, {
+    countIndex: props.specIndex,
+    length: props.endOfLength,
+  });
+
+  const handleForward = () => {
+    dispatch({ type: ACTION.INCREMENT });
+  };
+  const handleBack = () => {
+    dispatch({ type: ACTION.DECREMENT });
   };
 
   const handleEmailWindow = (to, subject, body) => {
@@ -46,13 +55,13 @@ const SingleEmail = (props) => {
             src={Left}
             alt=''
             className='left'
-            onClick={(e) => handleBack(toggle)}
+            onClick={(e) => handleBack()}
           />
           <img
             src={Left}
             alt=''
             className='right'
-            onClick={(e) => handleForward(toggle)}
+            onClick={(e) => handleForward()}
           />
         </div>
         <div id='new-window'>
@@ -62,9 +71,9 @@ const SingleEmail = (props) => {
               alt=''
               onClick={(e) =>
                 handleEmailWindow(
-                  props.mail[specifiedIndex].recipient,
-                  props.mail[specifiedIndex].subject,
-                  props.mail[specifiedIndex].info
+                  props.mail[state.countIndex].recipient,
+                  props.mail[state.countIndex].subject,
+                  props.mail[state.countIndex].info
                 )
               }
             />
@@ -73,15 +82,15 @@ const SingleEmail = (props) => {
       </div>
       <div id='contact'>
         <h3>
-          {props.mail[specifiedIndex].sender} <span>to {""} </span>
-          {props.mail[specifiedIndex].recipient}
+          {props.mail[state.countIndex].sender} <span>to {""} </span>
+          {props.mail[state.countIndex].recipient}
         </h3>
       </div>
       <div id='about'>
-        <h4>{props.mail[specifiedIndex].subject}</h4>
+        <h4>{props.mail[state.countIndex].subject}</h4>
       </div>
       <div id='content'>
-        <p>{props.mail[specifiedIndex].info}</p>
+        <p>{props.mail[state.countIndex].info}</p>
       </div>
     </div>
   );

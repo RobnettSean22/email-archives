@@ -6,7 +6,7 @@ import Right from "../../Assets/icon_arrow02.svg";
 import moment from "moment";
 
 const Sortemails = (props) => {
-  const { emailArchives, sortFrom, sortTo, sortSubject, sortDate } = props;
+  const { emailArchives, selectedMailer } = props;
 
   const msToTime = (duration) => {
     let ms = duration.getTime();
@@ -36,10 +36,7 @@ const Sortemails = (props) => {
         : stringDate.getFullYear() !== +moment().format("YYYY")
         ? emails.date
         : stringDate.toDateString().slice(4, 11);
-    console.log(
-      stringDate.toDateString().slice(4, 11),
-      moment().startOf("day")._d.toDateString()
-    );
+
     return (
       <div
         className='mail-list'
@@ -47,17 +44,19 @@ const Sortemails = (props) => {
         onClick={(e) => props.openSingleEmail(i)}
       >
         <div className='sender'>
-          <h3 className={sortFrom === true ? "bolded" : "reg"}>{toFit}</h3>
+          <h3 className={selectedMailer === "from" ? "bolded" : "reg"}>
+            {toFit}
+          </h3>
         </div>
         <div className='recipient'>
           {" "}
-          <h3 className={sortTo === true ? "bolded" : "reg"}>
+          <h3 className={selectedMailer === "to" ? "bolded" : "reg"}>
             {emails.recipient}
           </h3>
         </div>
         <div className='subject'>
           {" "}
-          <h3 className={sortSubject === true ? "bolded" : "reg"}>
+          <h3 className={selectedMailer === "subject" ? "bolded" : "reg"}>
             {emails.subject.substring(0, 54)}
           </h3>
         </div>
@@ -70,7 +69,7 @@ const Sortemails = (props) => {
           }
         >
           {" "}
-          <h3 className={sortDate === true ? "bolded" : "reg"}>
+          <h3 className={selectedMailer === "date" ? "bolded" : "reg"}>
             {dateDisplay}
           </h3>
         </div>

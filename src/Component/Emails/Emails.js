@@ -31,24 +31,24 @@ class Emails extends Component {
   handleSortFrom = () => {
     this.setState({
       archives: this.state.archives.sort((a, b) => {
-        const abc = this.state.from ? -1 : 1;
-        return abc * b.recipient.localeCompare(a.recipient.toLowerCase());
+        // const abc = this.state.from ? -1 : 1;
+        return -1 * a.recipient.localeCompare(b.recipient.toLowerCase());
       }),
     });
   };
   handleSortTo = () => {
     this.setState({
       archives: this.state.archives.sort((a, b) => {
-        const abc = this.state.from ? -1 : 1;
-        return abc * b.sender.localeCompare(a.sender.toLowerCase());
+        // const abc = this.state.from ? -1 : 1;
+        return 1 * b.sender.localeCompare(a.sender.toLowerCase());
       }),
     });
   };
   handleSortSubject = () => {
     this.setState({
       archives: this.state.archives.sort((a, b) => {
-        const abc = this.state.from ? -1 : 1;
-        return abc * b.subject.localeCompare(a.subject.toLowerCase());
+        // const abc = this.state.from ? -1 : 1;
+        return 1 * b.subject.localeCompare(a.subject.toLowerCase());
       }),
     });
   };

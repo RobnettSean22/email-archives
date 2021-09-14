@@ -1,68 +1,66 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import SortEmails from "./SortEmails";
 import SingleEmail from "../SingleEmail/SingleEmail";
-
 import Up from "../../Assets/icon_arrow01.svg";
 
 const EmailLayout = (props) => {
-  const [from, setFrom] = useState(true);
-  const [to, setTo] = useState(false);
-  const [subject, setSubject] = useState(false);
-  const [date, setDate] = useState(false);
+  // const [from, setFrom] = useState(true);
+  // const [to, setTo] = useState(false);
+  // const [subject, setSubject] = useState(false);
+  // const [date, setDate] = useState(false);
+  // const [newArchives, setNewArchives] = useState(props.emailNewArchives);
 
-  const [newArchives, setNewArchives] = useState(props.emailNewArchives);
+  const SORTACTIONS = {
+    SORTTO: "to",
+    SORTFROM: "from",
+    SORTDATE: "date",
+    SORTSUBJECT: "subject",
+  };
+
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case SORTACTIONS.SORTFROM:
+        return { mailer: "from", order: props.sortFrom() };
+      case SORTACTIONS.SORTTO:
+        return { mailer: "to", order: props.sortTo() };
+      case SORTACTIONS.SORTSUBJECT:
+        return { mailer: "subject", order: props.sortSubject() };
+      case SORTACTIONS.SORTDATE:
+        return { mailer: "date", order: props.sortDate() };
+      default:
+        return state;
+    }
+  };
+
+  const [state, dispatch] = useReducer(reducer, {
+    mailer: "date",
+    order: "",
+  });
 
   useEffect(() => {
-    handleDate();
+    dispatch({ type: SORTACTIONS.SORTDATE });
   }, []);
 
-  const handleFrom = () => {
-    setFrom(true);
-    setTo(false);
-    setSubject(false);
-    setDate(false);
-    setNewArchives(props.sortFrom());
-  };
-  const handleTo = () => {
-    setFrom(false);
-    setTo(true);
-    setSubject(false);
-    setDate(false);
-    setNewArchives(props.sortTo());
-  };
-  const handleSubject = () => {
-    setFrom(false);
-    setTo(false);
-    setSubject(true);
-    setDate(false);
-    setNewArchives(props.sortSubject());
-  };
-  const handleDate = () => {
-    setFrom(false);
-    setTo(false);
-    setSubject(false);
-    setDate(true);
-    setNewArchives(props.sortDate());
-  };
-  console.log(props.passFilterEmails);
   return (
     <div id='email'>
       <div id={props.emailSingle ? "mail-order" : "non-exgsistant"}>
         <div id='from'>
-          <h2 onClick={handleFrom}>From</h2>
+          <h2 onClick={() => dispatch({ type: SORTACTIONS.SORTFROM })}>From</h2>
           <div>
             <img
-              className={from === true ? "show-arrow" : "hide-arrow"}
+              className={() =>
+                state.mailer === "from" ? "show-arrow" : "hide-arrow"
+              }
               src={Up}
               alt=''
             />
           </div>
         </div>
         <div id='to'>
-          <h2 onClick={handleTo}>To</h2>
+          <h2 onClick={() => dispatch({ type: SORTACTIONS.SORTTO })}>To</h2>
           <div>
             <img
-              className={to === true ? "show-arrow" : "hide-arrow"}
+              className={state.mailer === "to" ? "show-arrow" : "hide-arrow"}
               src={Up}
               alt=''
             />
@@ -70,10 +68,14 @@ const EmailLayout = (props) => {
         </div>
         <div id='about'>
           {" "}
-          <h2 onClick={handleSubject}>Subject</h2>
+          <h2 onClick={() => dispatch({ type: SORTACTIONS.SORTSUBJECT })}>
+            Subject
+          </h2>
           <div>
             <img
-              className={subject === true ? "show-arrow" : "hide-arrow"}
+              className={
+                state.mailer === "subject" ? "show-arrow" : "hide-arrow"
+              }
               src={Up}
               alt=''
             />
@@ -81,10 +83,10 @@ const EmailLayout = (props) => {
         </div>
         <div id='when'>
           {" "}
-          <h2 onClick={handleDate}>Date</h2>
+          <h2 onClick={() => dispatch({ type: SORTACTIONS.SORTFROM })}>Date</h2>
           <div>
             <img
-              className={date === true ? "show-arrow" : "hide-arrow"}
+              className={state.mailer === "date" ? "show-arrow" : "hide-arrow"}
               src={Up}
               alt=''
             />
@@ -97,10 +99,7 @@ const EmailLayout = (props) => {
           sortStartDate={props.passStartDate}
           sortEndDate={props.passEndDate}
           sortSearch={props.passSearch}
-          sortFrom={from}
-          sortTo={to}
-          sortSubject={subject}
-          sortDate={date}
+          selectedMailer={state.mailer}
           openSingleEmail={props.passToSingleEmail}
         />
       ) : (
