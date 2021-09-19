@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { DateRangePicker } from "react-dates";
-import EmailLayout from "./EmailLayout";
+import EmailLayout from "../EmailLayout/EmailLayout";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./DatePicker.scss";
@@ -98,10 +98,9 @@ class Emails extends Component {
         return mail.date.toLowerCase().indexOf(search.toLowerCase()) !== -1;
       }
     });
-    console.log(filterEmails);
 
     return (
-      <div id='archive-container'>
+      <div data-testid='mailbox' id='archive-container'>
         <div id='search'>
           <div className='filter-date'>
             <DateRangePicker

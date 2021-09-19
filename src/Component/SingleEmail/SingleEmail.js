@@ -48,7 +48,7 @@ const SingleEmail = (props) => {
   };
 
   return (
-    <div id='spec-email'>
+    <div data-testid='single-eamil' id='spec-email'>
       <div id='controls'>
         <div id='toggle-controls'>
           <img
